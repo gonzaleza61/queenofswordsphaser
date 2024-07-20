@@ -1,5 +1,6 @@
 import { Scene } from "phaser";
 import { EventBus } from "../EventBus";
+import Player from "../player/Player";
 
 export class Game extends Scene {
     constructor() {
@@ -16,8 +17,9 @@ export class Game extends Scene {
 
     create() {
         var platforms;
+
         this.add.image(512, 384, "background");
-        this.add.image(40, 550, "qos");
+        const player = new Player(this, 40, 100);
 
         platforms = this.physics.add.staticGroup();
 

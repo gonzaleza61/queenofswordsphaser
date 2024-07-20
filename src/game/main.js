@@ -2,7 +2,6 @@ import { Game as MainGame } from "./scenes/Game";
 import { AUTO, Game } from "phaser";
 import Phaser from "phaser";
 
-console.log("joe biden");
 //  Find out more information about the Game Config at:
 //  https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
 const config = {
