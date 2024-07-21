@@ -19,9 +19,12 @@ export class Game extends Scene {
         var platforms;
 
         this.add.image(512, 384, "background");
-        const player = new Player(this, 40, 100);
 
         platforms = this.physics.add.staticGroup();
+        this.player = new Player(this, 40, 100);
+        console.log(this.player);
+
+        this.physics.add.collider(this.player, platforms);
 
         platforms.create(400, 568, "ground").setScale(2).refreshBody();
 
@@ -30,6 +33,23 @@ export class Game extends Scene {
         platforms.create(750, 220, "ground");
 
         EventBus.emit("current-scene-ready", this);
+    }
+
+    update() {
+        if (this.player) {
+            const cursors = this.input.keyboard.createCursorKeys();
+            if (cursors.left.isDown) {
+                this.player.body.setVelocityX(-160);
+            } else if (cursors.right.isDown) {
+                this.player.body.setVelocityX(160);
+            } else {
+                this.player.body.setVelocityX(0);
+            }
+
+            if (cursors.up.isDown && this.player.body.touching.down) {
+                this.player.body.setVelocityY(-330);
+            }
+        }
     }
 }
 
