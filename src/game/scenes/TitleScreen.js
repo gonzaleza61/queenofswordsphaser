@@ -9,8 +9,10 @@ export class TitleScreen extends Scene {
     preload() {}
 
     create() {
-        this.add.text(10, 10, "Title Screen");
-        this.add.text(100, 100, "Press Enter To Start Game");
+        const { centerX, centerY } = this.cameras.main;
+        this.add
+            .text(centerX, centerY, "Press Enter To Start Game")
+            .setOrigin(0.5, 0.5);
 
         this.input.keyboard.on("keydown", (e) => {
             this.scene.start("Game");
