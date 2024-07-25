@@ -1,4 +1,5 @@
 import { Game as MainGame } from "./scenes/Game";
+import { TitleScreen } from "./scenes/TitleScreen";
 import { AUTO, Game } from "phaser";
 import Phaser from "phaser";
 
@@ -10,7 +11,7 @@ const config = {
     height: 600,
     parent: "game-container",
     backgroundColor: "#028af8",
-    scene: [MainGame],
+    scene: [TitleScreen, MainGame],
     physics: {
         default: "arcade",
         arcade: {
