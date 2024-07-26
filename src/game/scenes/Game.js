@@ -39,7 +39,6 @@ export class Game extends Scene {
         if (this.player) {
             const cursors = this.input.keyboard.createCursorKeys();
             const WASD = this.input.keyboard.addKeys("W, A, S, D, SPACE");
-            console.log(WASD);
             if (cursors.left.isDown || WASD.A.isDown) {
                 this.player.body.setVelocityX(-160);
             } else if (cursors.right.isDown || WASD.D.isDown) {

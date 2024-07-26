@@ -10,6 +10,10 @@ export class TitleScreen extends Scene {
 
     create() {
         const { centerX, centerY } = this.cameras.main;
+
+        console.log(this.cameras);
+
+        this.add.text(400, 20, "The Queen of Swords").setOrigin(0.5, 0.5);
         this.add
             .text(centerX, centerY, "Press Enter To Start Game")
             .setOrigin(0.5, 0.5);
