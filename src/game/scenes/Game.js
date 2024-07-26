@@ -38,15 +38,20 @@ export class Game extends Scene {
     update() {
         if (this.player) {
             const cursors = this.input.keyboard.createCursorKeys();
-            if (cursors.left.isDown) {
+            const WASD = this.input.keyboard.addKeys("W, A, S, D, SPACE");
+            console.log(WASD);
+            if (cursors.left.isDown || WASD.A.isDown) {
                 this.player.body.setVelocityX(-160);
-            } else if (cursors.right.isDown) {
+            } else if (cursors.right.isDown || WASD.D.isDown) {
                 this.player.body.setVelocityX(160);
             } else {
                 this.player.body.setVelocityX(0);
             }
 
-            if (cursors.up.isDown && this.player.body.touching.down) {
+            if (
+                cursors.up.isDown ||
+                (WASD.SPACE.isDown && this.player.body.touching.down)
+            ) {
                 this.player.body.setVelocityY(-330);
             }
         }
