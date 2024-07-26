@@ -48,7 +48,7 @@ export class Game extends Scene {
             }
 
             if (
-                cursors.up.isDown ||
+                (cursors.up.isDown && this.player.body.touching.down) ||
                 (WASD.SPACE.isDown && this.player.body.touching.down)
             ) {
                 this.player.body.setVelocityY(-330);
