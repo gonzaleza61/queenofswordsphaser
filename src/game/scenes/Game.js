@@ -13,6 +13,10 @@ export class Game extends Scene {
         this.load.image("qos", "queenofswords.png");
         this.load.image("background", "bg.png");
         this.load.image("ground", "platform.png");
+        this.load.spritesheet("soldier", "soldierspritesheet.png", {
+            frameWidth: 32,
+            frameHeight: 44,
+        });
     }
 
     create() {
@@ -22,8 +26,7 @@ export class Game extends Scene {
 
         platforms = this.physics.add.staticGroup();
         this.player = new Player(this, 40, 100);
-        console.log(this.player);
-
+        this.add.image(10, 40, "soldier").setScale(2);
         this.physics.add.collider(this.player, platforms);
 
         platforms.create(400, 568, "ground").setScale(2).refreshBody();

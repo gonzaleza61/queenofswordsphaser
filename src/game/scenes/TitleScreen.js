@@ -19,7 +19,11 @@ export class TitleScreen extends Scene {
             .setOrigin(0.5, 0.5);
 
         this.input.keyboard.on("keydown-ENTER", (e) => {
-            this.scene.start("Game");
+            this.cameras.main.fadeOut(1000, 0, 0, 0, (camera, progress) => {
+                if (progress === 1) {
+                    this.scene.start("Game");
+                }
+            });
         });
 
         EventBus.emit("current-scene-ready", this);
