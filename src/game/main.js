@@ -9,8 +9,9 @@ const config = {
     type: AUTO,
     width: 800,
     height: 600,
+    transparent: "true",
     parent: "game-container",
-    backgroundColor: "#000000",
+    backgroundColor: "#999999",
     scene: [TitleScreen, MainGame],
     physics: {
         default: "arcade",
