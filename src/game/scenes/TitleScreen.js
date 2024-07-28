@@ -6,12 +6,15 @@ export class TitleScreen extends Scene {
         super("TitleScreen");
     }
 
-    preload() {}
+    preload() {
+        this.load.setPath("assets");
+        this.load.image("background", "bg.png");
+    }
 
     create() {
         const { centerX, centerY } = this.cameras.main;
 
-        console.log(this.cameras);
+        this.add.image(512, 384, "background");
 
         this.add.text(400, 20, "The Queen of Swords").setOrigin(0.5, 0.5);
         this.add
@@ -19,10 +22,9 @@ export class TitleScreen extends Scene {
             .setOrigin(0.5, 0.5);
 
         this.input.keyboard.once("keydown-ENTER", (e) => {
-            this.cameras.main.fadeOut(1000, 0, 0, 0, (camera, progress) => {
-                if (progress === 1) {
-                    this.scene.start("Game");
-                }
+            this.cameras.main.fadeOut(1000, 0, 0, 0);
+            this.cameras.main.on("camerafadeoutcomplete", () => {
+                this.scene.start("Game");
             });
         });
 

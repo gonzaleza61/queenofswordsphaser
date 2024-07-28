@@ -10,7 +10,7 @@ const config = {
     width: 800,
     height: 600,
     parent: "game-container",
-    backgroundColor: "#028af8",
+    backgroundColor: "#000000",
     scene: [TitleScreen, MainGame],
     physics: {
         default: "arcade",
