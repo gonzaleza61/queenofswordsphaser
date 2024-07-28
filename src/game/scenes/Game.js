@@ -20,6 +20,7 @@ export class Game extends Scene {
     }
 
     create() {
+        this.cameras.main.fadeIn(1000, 0, 0, 0);
         var platforms;
 
         this.add.image(512, 384, "background");
