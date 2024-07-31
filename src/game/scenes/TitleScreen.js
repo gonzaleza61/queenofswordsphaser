@@ -28,6 +28,13 @@ export class TitleScreen extends Scene {
             });
         });
 
+        this.input.once("pointerdown", (e) => {
+            this.cameras.main.fadeOut(1000, 0, 0, 0);
+            this.cameras.main.on("camerafadeoutcomplete", () => {
+                this.scene.start("Game");
+            });
+        });
+
         EventBus.emit("current-scene-ready", this);
     }
 
