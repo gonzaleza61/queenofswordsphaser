@@ -25,7 +25,7 @@ export class Game extends Scene {
         var platforms;
 
         this.add.image(512, 384, "background");
-        this.add.image(50, 500, "left").setScale(0.8);
+        const leftControl = this.add.image(50, 500, "left").setScale(0.8);
         this.add.image(120, 500, "right").setScale(0.8);
 
         platforms = this.physics.add.staticGroup();
@@ -40,6 +40,10 @@ export class Game extends Scene {
         platforms.create(750, 220, "ground");
 
         this.cameras.main.fadeIn(1000, 0, 0, 0);
+
+        leftControl.on("pointerdown", () => {
+            console.log("moveleft");
+        });
 
         EventBus.emit("current-scene-ready", this);
     }
