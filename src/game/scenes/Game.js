@@ -63,30 +63,36 @@ export class Game extends Scene {
         if (this.leftControl) {
             this.leftControl.on("pointerdown", (e) => {
                 this.isLeftPressed = true;
+                this.leftControl.setAlpha(0.5);
             });
 
             this.leftControl.on("pointerup", (e) => {
                 this.isLeftPressed = false;
+                this.leftControl.setAlpha(1);
             });
         }
 
         if (this.rightControl) {
             this.rightControl.on("pointerdown", (e) => {
                 this.isRightPressed = true;
+                this.isRightPressed.setAlpha(0.5);
             });
 
             this.rightControl.on("pointerup", (e) => {
                 this.isRightPressed = false;
+                this.isRightPressed.setAlpha(1);
             });
         }
 
         if (this.jumpControl) {
             this.jumpControl.on("pointerdown", (e) => {
                 this.isJumpPressed = true;
+                this.jumpControl.setAlpha(0.5);
             });
 
             this.jumpControl.on("pointerup", (e) => {
                 this.isJumpPressed = false;
+                this.jumpControl.setAlpha(1);
             });
         }
 
