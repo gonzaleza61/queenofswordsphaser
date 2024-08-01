@@ -45,6 +45,9 @@ export class Game extends Scene {
         platforms.create(50, 250, "ground");
         platforms.create(750, 220, "ground");
 
+        this.isLeftPressed = false;
+        this.isRightPressed = false;
+
         this.cameras.main.fadeIn(1000, 0, 0, 0);
 
         EventBus.emit("current-scene-ready", this);
@@ -53,22 +56,34 @@ export class Game extends Scene {
     update() {
         if (this.leftControl) {
             this.leftControl.on("pointerdown", (e) => {
-                this.player.body.setVelocityX(-160);
+                this.isLeftPressed = true;
+            });
+
+            this.leftControl.on("pointerup", (e) => {
+                this.isLeftPressed = false;
             });
         }
 
         if (this.rightControl) {
-            this.rightControl.on("pointerdown", () => {
-                this.player.body.setVelocityX(160);
+            this.rightControl.on("pointerdown", (e) => {
+                this.isRightPressed = true;
+            });
+
+            this.rightControl.on("pointerup", (e) => {
+                this.isRightPressed = false;
             });
         }
 
         if (this.player) {
             const cursors = this.input.keyboard.createCursorKeys();
             const WASD = this.input.keyboard.addKeys("W, A, S, D, SPACE");
-            if (cursors.left.isDown || WASD.A.isDown) {
+            if (cursors.left.isDown || WASD.A.isDown || this.isLeftPressed) {
                 this.player.body.setVelocityX(-160);
-            } else if (cursors.right.isDown || WASD.D.isDown) {
+            } else if (
+                cursors.right.isDown ||
+                WASD.D.isDown ||
+                this.isRightPressed
+            ) {
                 this.player.body.setVelocityX(160);
             } else {
                 this.player.body.setVelocityX(0);
