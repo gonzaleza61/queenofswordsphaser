@@ -84,6 +84,10 @@ export class Game extends Scene {
             this.jumpControl.on("pointerdown", (e) => {
                 this.isJumpPressed = true;
             });
+
+            this.jumpControl.on("pointerup", (e) => {
+                this.isJumpPressed = false;
+            });
         }
 
         if (this.player) {
