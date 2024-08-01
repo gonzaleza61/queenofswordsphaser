@@ -8,28 +8,30 @@ export class Game extends Scene {
     }
 
     preload() {
-        this.load.setPath("assets");
-
-        this.load.image("qos", "queenofswords.png");
-        this.load.image("background", "bg.png");
-        this.load.image("ground", "platform.png");
-        this.load.image("left", "leftcontrol.png");
-        this.load.image("right", "rightcontrol.png");
-        this.load.image("jump", "jumpcontrol.png");
-        this.load.spritesheet("soldier", "soldierspritesheet.png", {
-            frameWidth: 32,
-            frameHeight: 44,
-        });
+        // this.load.setPath("assets");
+        // this.load.image("qos", "queenofswords.png");
+        // // this.load.image("background", "bg.png");
+        // this.load.image("ground", "platform.png");
+        // this.load.image("left", "leftcontrol.png");
+        // this.load.image("right", "rightcontrol.png");
+        // this.load.image("jump", "jumpcontrol.png");
     }
 
     create() {
         var platforms;
 
         this.add.image(512, 384, "background");
+
+        platforms = this.physics.add.staticGroup();
+        this.player = new Player(this, 40, 100);
+        this.physics.add.collider(this.player, platforms);
+
+        platforms.create(400, 568, "ground").setScale(2).refreshBody();
         this.leftControl = this.add
             .image(70, 500, "left")
             .setScale(1.5)
             .setInteractive();
+
         this.rightControl = this.add
             .image(200, 500, "right")
             .setScale(1.5)
@@ -38,13 +40,6 @@ export class Game extends Scene {
             .image(700, 500, "jump")
             .setScale(1.5)
             .setInteractive();
-
-        platforms = this.physics.add.staticGroup();
-        this.player = new Player(this, 40, 100);
-        this.add.image(10, 40, "soldier").setScale(2);
-        this.physics.add.collider(this.player, platforms);
-
-        platforms.create(400, 568, "ground").setScale(2).refreshBody();
 
         platforms.create(600, 400, "ground");
         platforms.create(50, 250, "ground");

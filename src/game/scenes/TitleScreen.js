@@ -7,8 +7,8 @@ export class TitleScreen extends Scene {
     }
 
     preload() {
-        this.load.setPath("assets");
-        this.load.image("background", "bg.png");
+        // this.load.setPath("assets");
+        // this.load.image("background", "bg.png");
     }
 
     create() {

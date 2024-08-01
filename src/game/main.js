@@ -1,5 +1,6 @@
 import { Game as MainGame } from "./scenes/Game";
 import { TitleScreen } from "./scenes/TitleScreen";
+import { LoadingScreen } from "./scenes/LoadingScreen";
 import { AUTO, Game } from "phaser";
 import Phaser from "phaser";
 
@@ -15,7 +16,7 @@ const config = {
     input: {
         activePointers: 3,
     },
-    scene: [TitleScreen, MainGame],
+    scene: [LoadingScreen, TitleScreen, MainGame],
     physics: {
         default: "arcade",
         arcade: {
