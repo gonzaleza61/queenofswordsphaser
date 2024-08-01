@@ -12,6 +12,7 @@ const config = {
     transparent: "true",
     parent: "game-container",
     backgroundColor: "#999999",
+    activePointers: 3,
     scene: [TitleScreen, MainGame],
     physics: {
         default: "arcade",
