@@ -25,8 +25,14 @@ export class Game extends Scene {
         var platforms;
 
         this.add.image(512, 384, "background");
-        const leftControl = this.add.image(50, 500, "left").setScale(0.8);
-        this.add.image(120, 500, "right").setScale(0.8);
+        this.leftControl = this.add
+            .image(50, 500, "left")
+            .setScale(0.8)
+            .setInteractive();
+        this.rightControl = this.add
+            .image(120, 500, "right")
+            .setScale(0.8)
+            .setInteractive();
 
         platforms = this.physics.add.staticGroup();
         this.player = new Player(this, 40, 100);
@@ -41,14 +47,22 @@ export class Game extends Scene {
 
         this.cameras.main.fadeIn(1000, 0, 0, 0);
 
-        leftControl.on("pointerdown", () => {
-            console.log("moveleft");
-        });
-
         EventBus.emit("current-scene-ready", this);
     }
 
     update() {
+        if (this.leftControl) {
+            this.leftControl.on("pointerdown", (e) => {
+                this.player.body.setVelocityX(-160);
+            });
+        }
+
+        if (this.rightControl) {
+            this.rightControl.on("pointerdown", () => {
+                this.player.body.setVelocityX(160);
+            });
+        }
+
         if (this.player) {
             const cursors = this.input.keyboard.createCursorKeys();
             const WASD = this.input.keyboard.addKeys("W, A, S, D, SPACE");
