@@ -15,6 +15,7 @@ export class Game extends Scene {
         this.load.image("ground", "platform.png");
         this.load.image("left", "leftcontrol.png");
         this.load.image("right", "rightcontrol.png");
+        this.load.image("jump", "jumpcontrol.png");
         this.load.spritesheet("soldier", "soldierspritesheet.png", {
             frameWidth: 32,
             frameHeight: 44,
@@ -26,12 +27,16 @@ export class Game extends Scene {
 
         this.add.image(512, 384, "background");
         this.leftControl = this.add
-            .image(50, 500, "left")
-            .setScale(1)
+            .image(70, 500, "left")
+            .setScale(1.5)
             .setInteractive();
         this.rightControl = this.add
-            .image(135, 500, "right")
-            .setScale(1)
+            .image(200, 500, "right")
+            .setScale(1.5)
+            .setInteractive();
+        this.jumpControl = this.add
+            .image(700, 500, "jump")
+            .setScale(1.5)
             .setInteractive();
 
         platforms = this.physics.add.staticGroup();
@@ -47,6 +52,7 @@ export class Game extends Scene {
 
         this.isLeftPressed = false;
         this.isRightPressed = false;
+        this.isJumpPressed = false;
 
         this.cameras.main.fadeIn(1000, 0, 0, 0);
 
@@ -74,6 +80,12 @@ export class Game extends Scene {
             });
         }
 
+        if (this.jumpControl) {
+            this.jumpControl.on("pointerdown", (e) => {
+                this.isJumpPressed = true;
+            });
+        }
+
         if (this.player) {
             const cursors = this.input.keyboard.createCursorKeys();
             const WASD = this.input.keyboard.addKeys("W, A, S, D, SPACE");
@@ -91,7 +103,8 @@ export class Game extends Scene {
 
             if (
                 (cursors.up.isDown && this.player.body.touching.down) ||
-                (WASD.SPACE.isDown && this.player.body.touching.down)
+                (WASD.SPACE.isDown && this.player.body.touching.down) ||
+                (this.isJumpPressed && this.player.body.touching.down)
             ) {
                 this.player.body.setVelocityY(-330);
             }
