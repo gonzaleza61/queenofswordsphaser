@@ -30,16 +30,19 @@ export class Game extends Scene {
         this.leftControl = this.add
             .image(70, 500, "left")
             .setScale(1.5)
-            .setInteractive();
+            .setInteractive()
+            .setAlpha(0.8);
 
         this.rightControl = this.add
             .image(200, 500, "right")
             .setScale(1.5)
-            .setInteractive();
+            .setInteractive()
+            .setAlpha(0.8);
         this.jumpControl = this.add
             .image(700, 500, "jump")
             .setScale(1.5)
-            .setInteractive();
+            .setInteractive()
+            .setAlpha(0.8);
 
         platforms.create(600, 400, "ground");
         platforms.create(50, 250, "ground");
@@ -63,7 +66,7 @@ export class Game extends Scene {
 
             this.leftControl.on("pointerup", (e) => {
                 this.isLeftPressed = false;
-                this.leftControl.setAlpha(1);
+                this.leftControl.setAlpha(0.8);
             });
         }
 
@@ -75,7 +78,7 @@ export class Game extends Scene {
 
             this.rightControl.on("pointerup", (e) => {
                 this.isRightPressed = false;
-                this.rightControl.setAlpha(1);
+                this.rightControl.setAlpha(0.8);
             });
         }
 
@@ -87,7 +90,7 @@ export class Game extends Scene {
 
             this.jumpControl.on("pointerup", (e) => {
                 this.isJumpPressed = false;
-                this.jumpControl.setAlpha(1);
+                this.jumpControl.setAlpha(0.8);
             });
         }
 
