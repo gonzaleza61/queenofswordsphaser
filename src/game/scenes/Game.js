@@ -75,12 +75,12 @@ export class Game extends Scene {
         if (this.rightControl) {
             this.rightControl.on("pointerdown", (e) => {
                 this.isRightPressed = true;
-                this.isRightPressed.setAlpha(0.5);
+                this.rightControl.setAlpha(0.5);
             });
 
             this.rightControl.on("pointerup", (e) => {
                 this.isRightPressed = false;
-                this.isRightPressed.setAlpha(1);
+                this.rightControl.setAlpha(1);
             });
         }
 
