@@ -27,11 +27,11 @@ export class Game extends Scene {
         this.add.image(512, 384, "background");
         this.leftControl = this.add
             .image(50, 500, "left")
-            .setScale(0.8)
+            .setScale(1)
             .setInteractive();
         this.rightControl = this.add
-            .image(120, 500, "right")
-            .setScale(0.8)
+            .image(135, 500, "right")
+            .setScale(1)
             .setInteractive();
 
         platforms = this.physics.add.staticGroup();
