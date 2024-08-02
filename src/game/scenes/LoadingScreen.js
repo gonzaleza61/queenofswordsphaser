@@ -17,6 +17,7 @@ export class LoadingScreen extends Scene {
         this.load.image("left", "leftcontrol.png");
         this.load.image("right", "rightcontrol.png");
         this.load.image("jump", "jumpcontrol.png");
+        this.load.image("titleBG", "backgroundtest.jpg");
 
         this.load.on("progress", (value) => {
             loadingText.setText(`Loading... ${parseInt(value * 100)}%`);

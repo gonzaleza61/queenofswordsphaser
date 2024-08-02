@@ -52,6 +52,16 @@ export class Game extends Scene {
         this.isRightPressed = false;
         this.isJumpPressed = false;
 
+        this.input.on("pointerup", () => {
+            this.leftControlPressed = false;
+            this.rightControlPressed = false;
+        });
+
+        this.input.on("pointerout", () => {
+            this.leftControlPressed = false;
+            this.rightControlPressed = false;
+        });
+
         this.cameras.main.fadeIn(1000, 0, 0, 0);
 
         EventBus.emit("current-scene-ready", this);
