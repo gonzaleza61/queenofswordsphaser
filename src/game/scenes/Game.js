@@ -52,53 +52,57 @@ export class Game extends Scene {
         this.isRightPressed = false;
         this.isJumpPressed = false;
 
-        this.input.on("pointerup", () => {
-            this.leftControlPressed = false;
-            this.rightControlPressed = false;
-        });
-
-        this.input.on("pointerout", () => {
-            this.leftControlPressed = false;
-            this.rightControlPressed = false;
-        });
-
         this.cameras.main.fadeIn(1000, 0, 0, 0);
 
         EventBus.emit("current-scene-ready", this);
     }
 
     update() {
+        if (this.input) {
+            this.input.on("pointerup", () => {
+                this.leftControlPressed = false;
+                this.rightControlPressed = false;
+            });
+        }
+
+        if (this.input) {
+            this.input.on("pointerout", () => {
+                this.leftControlPressed = false;
+                this.rightControlPressed = false;
+            });
+        }
+
         if (this.leftControl) {
-            this.leftControl.on("pointerdown", (e) => {
+            this.leftControl.on("pointerdown", () => {
                 this.isLeftPressed = true;
                 this.leftControl.setAlpha(0.5);
             });
 
-            this.leftControl.on("pointerup", (e) => {
+            this.leftControl.on("pointerup", () => {
                 this.isLeftPressed = false;
                 this.leftControl.setAlpha(0.8);
             });
         }
 
         if (this.rightControl) {
-            this.rightControl.on("pointerdown", (e) => {
+            this.rightControl.on("pointerdown", () => {
                 this.isRightPressed = true;
                 this.rightControl.setAlpha(0.5);
             });
 
-            this.rightControl.on("pointerup", (e) => {
+            this.rightControl.on("pointerup", () => {
                 this.isRightPressed = false;
                 this.rightControl.setAlpha(0.8);
             });
         }
 
         if (this.jumpControl) {
-            this.jumpControl.on("pointerdown", (e) => {
+            this.jumpControl.on("pointerdown", () => {
                 this.isJumpPressed = true;
                 this.jumpControl.setAlpha(0.5);
             });
 
-            this.jumpControl.on("pointerup", (e) => {
+            this.jumpControl.on("pointerup", () => {
                 this.isJumpPressed = false;
                 this.jumpControl.setAlpha(0.8);
             });

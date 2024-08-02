@@ -21,14 +21,14 @@ export class TitleScreen extends Scene {
             .text(centerX, centerY, "Press Enter To Start Game")
             .setOrigin(0.5, 0.5);
 
-        this.input.keyboard.once("keydown-ENTER", (e) => {
+        this.input.keyboard.once("keydown-ENTER", () => {
             this.cameras.main.fadeOut(1000, 0, 0, 0);
             this.cameras.main.on("camerafadeoutcomplete", () => {
                 this.scene.start("Game");
             });
         });
 
-        this.input.once("pointerdown", (e) => {
+        this.input.once("pointerdown", () => {
             this.cameras.main.fadeOut(1000, 0, 0, 0);
             this.cameras.main.on("camerafadeoutcomplete", () => {
                 this.scene.start("Game");
