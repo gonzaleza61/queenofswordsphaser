@@ -101,7 +101,7 @@ export class Game extends Scene {
             });
 
             this.rightControl.on("pointerout", () => {
-                this.isLeftPressed = false;
+                this.isRightPressed = false;
                 this.rightControl.setAlpha(0.8);
             });
         }
