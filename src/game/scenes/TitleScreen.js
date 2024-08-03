@@ -18,7 +18,9 @@ export class TitleScreen extends Scene {
 
         this.add.text(400, 20, "The Queen of Swords").setOrigin(0.5, 0.5);
         this.add
-            .text(centerX, centerY, "Press Enter To Start Game")
+            .text(centerX, centerY, "Press Enter To Start Game", {
+                color: "#fff",
+            })
             .setOrigin(0.5, 0.5);
 
         this.input.keyboard.once("keydown-ENTER", () => {
@@ -34,6 +36,8 @@ export class TitleScreen extends Scene {
                 this.scene.start("Game");
             });
         });
+
+        console.log(this.scene);
 
         EventBus.emit("current-scene-ready", this);
     }
