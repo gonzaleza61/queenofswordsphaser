@@ -82,6 +82,11 @@ export class Game extends Scene {
                 this.isLeftPressed = false;
                 this.leftControl.setAlpha(0.8);
             });
+
+            // this.leftControl.on("pointerout", () => {
+            //     this.isLeftPressed = false;
+            //     this.leftControl.setAlpha(0.8);
+            // });
         }
 
         if (this.rightControl) {
@@ -94,6 +99,11 @@ export class Game extends Scene {
                 this.isRightPressed = false;
                 this.rightControl.setAlpha(0.8);
             });
+
+            // this.rightControl.on("pointerout", () => {
+            //     this.isLeftPressed = false;
+            //     this.leftControl.setAlpha(0.8);
+            // });
         }
 
         if (this.jumpControl) {
