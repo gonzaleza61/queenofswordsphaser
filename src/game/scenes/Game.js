@@ -58,19 +58,19 @@ export class Game extends Scene {
     }
 
     update() {
-        if (this.input) {
-            this.input.on("pointerup", () => {
-                this.leftControlPressed = false;
-                this.rightControlPressed = false;
-            });
-        }
+        // if (this.input) {
+        //     this.input.on("pointerup", () => {
+        //         this.leftControlPressed = false;
+        //         this.rightControlPressed = false;
+        //     });
+        // }
 
-        if (this.input) {
-            this.input.on("pointerout", () => {
-                this.leftControlPressed = false;
-                this.rightControlPressed = false;
-            });
-        }
+        // if (this.input) {
+        //     this.input.on("pointerout", () => {
+        //         this.leftControlPressed = false;
+        //         this.rightControlPressed = false;
+        //     });
+        // }
 
         if (this.leftControl) {
             this.leftControl.on("pointerdown", () => {
@@ -83,10 +83,10 @@ export class Game extends Scene {
                 this.leftControl.setAlpha(0.8);
             });
 
-            // this.leftControl.on("pointerout", () => {
-            //     this.isLeftPressed = false;
-            //     this.leftControl.setAlpha(0.8);
-            // });
+            this.leftControl.on("pointerout", () => {
+                this.isLeftPressed = false;
+                this.leftControl.setAlpha(0.8);
+            });
         }
 
         if (this.rightControl) {
@@ -100,10 +100,10 @@ export class Game extends Scene {
                 this.rightControl.setAlpha(0.8);
             });
 
-            // this.rightControl.on("pointerout", () => {
-            //     this.isLeftPressed = false;
-            //     this.leftControl.setAlpha(0.8);
-            // });
+            this.rightControl.on("pointerout", () => {
+                this.isLeftPressed = false;
+                this.rightControl.setAlpha(0.8);
+            });
         }
 
         if (this.jumpControl) {
@@ -113,6 +113,11 @@ export class Game extends Scene {
             });
 
             this.jumpControl.on("pointerup", () => {
+                this.isJumpPressed = false;
+                this.jumpControl.setAlpha(0.8);
+            });
+
+            this.jumpControl.on("pointerout", () => {
                 this.isJumpPressed = false;
                 this.jumpControl.setAlpha(0.8);
             });
