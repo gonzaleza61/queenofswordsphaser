@@ -37,8 +37,6 @@ export class TitleScreen extends Scene {
             });
         });
 
-        console.log(this.scene);
-
         EventBus.emit("current-scene-ready", this);
     }
 
