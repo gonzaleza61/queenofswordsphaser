@@ -53,25 +53,12 @@ export class Game extends Scene {
         this.isJumpPressed = false;
 
         this.cameras.main.fadeIn(1000, 0, 0, 0);
+        this.cameras.main.startFollow(this.player);
 
         EventBus.emit("current-scene-ready", this);
     }
 
     update() {
-        // if (this.input) {
-        //     this.input.on("pointerup", () => {
-        //         this.leftControlPressed = false;
-        //         this.rightControlPressed = false;
-        //     });
-        // }
-
-        // if (this.input) {
-        //     this.input.on("pointerout", () => {
-        //         this.leftControlPressed = false;
-        //         this.rightControlPressed = false;
-        //     });
-        // }
-
         if (this.leftControl) {
             this.leftControl.on("pointerdown", () => {
                 this.isLeftPressed = true;
