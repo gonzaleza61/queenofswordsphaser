@@ -31,18 +31,21 @@ export class Game extends Scene {
             .image(70, 500, "left")
             .setScale(1.5)
             .setInteractive()
-            .setAlpha(0.8);
+            .setAlpha(0.8)
+            .setScrollFactor(0);
 
         this.rightControl = this.add
             .image(200, 500, "right")
             .setScale(1.5)
             .setInteractive()
-            .setAlpha(0.8);
+            .setAlpha(0.8)
+            .setScrollFactor(0);
         this.jumpControl = this.add
             .image(700, 500, "jump")
             .setScale(1.5)
             .setInteractive()
-            .setAlpha(0.8);
+            .setAlpha(0.8)
+            .setScrollFactor(0);
 
         platforms.create(600, 400, "ground");
         platforms.create(50, 250, "ground");
