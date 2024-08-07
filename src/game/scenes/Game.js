@@ -27,6 +27,11 @@ export class Game extends Scene {
         this.physics.add.collider(this.player, platforms);
 
         platforms.create(400, 568, "ground").setScale(2).refreshBody();
+
+        platforms.create(600, 400, "ground");
+        platforms.create(50, 250, "ground");
+        platforms.create(750, 220, "ground");
+
         this.leftControl = this.add
             .image(70, 500, "left")
             .setScale(1.5)
@@ -46,10 +51,6 @@ export class Game extends Scene {
             .setInteractive()
             .setAlpha(0.8)
             .setScrollFactor(0);
-
-        platforms.create(600, 400, "ground");
-        platforms.create(50, 250, "ground");
-        platforms.create(750, 220, "ground");
 
         this.isLeftPressed = false;
         this.isRightPressed = false;
