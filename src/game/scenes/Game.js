@@ -20,11 +20,21 @@ export class Game extends Scene {
     create() {
         var platforms;
 
+        this.anims.create({
+            key: "walk",
+            frames: this.anims.generateFrameNumbers("knight", {
+                frames: [0, 1, 2, 3, 4, 5, 6],
+            }),
+            frameRate: 8,
+            repeat: -1,
+        });
+
         this.add.image(512, 384, "background");
 
         platforms = this.physics.add.staticGroup();
         this.player = new Player(this, 40, 100);
         this.physics.add.collider(this.player, platforms);
+        this.player.play("walk", true);
 
         platforms.create(400, 568, "ground").setScale(3).refreshBody();
 

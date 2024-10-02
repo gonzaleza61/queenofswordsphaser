@@ -11,6 +11,10 @@ export class LoadingScreen extends Scene {
             .text(400, 300, "Loading...", { fontSize: "32px", fill: "#fff" })
             .setOrigin(0.5, 0.5);
         this.load.setPath("assets");
+        this.load.spritesheet("knight", "Knight_player/Walking_KG_2.png", {
+            frameWidth: 100,
+            frameHeight: 64,
+        });
         this.load.image("qos", "queenofswords.png");
         this.load.image("background", "bg.png");
         this.load.image("ground", "platform.png");

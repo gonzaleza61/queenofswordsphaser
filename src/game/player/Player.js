@@ -2,7 +2,7 @@ import { GameObjects } from "phaser";
 
 class Player extends GameObjects.Sprite {
     constructor(scene, x, y) {
-        super(scene, x, y, "qos");
+        super(scene, x, y, "knight");
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this); // Ensure physics is added
         this.body.setCollideWorldBounds(true);
