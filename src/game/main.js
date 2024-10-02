@@ -8,7 +8,7 @@ import Phaser from "phaser";
 //  https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
 const config = {
     type: AUTO,
-    width: 800,
+    width: 1000,
     height: 600,
     transparent: "true",
     parent: "game-container",

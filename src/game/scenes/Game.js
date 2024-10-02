@@ -26,7 +26,7 @@ export class Game extends Scene {
         this.player = new Player(this, 40, 100);
         this.physics.add.collider(this.player, platforms);
 
-        platforms.create(400, 568, "ground").setScale(2).refreshBody();
+        platforms.create(400, 568, "ground").setScale(3).refreshBody();
 
         platforms.create(600, 400, "ground");
         platforms.create(50, 250, "ground");
@@ -57,6 +57,7 @@ export class Game extends Scene {
         this.isJumpPressed = false;
 
         this.cameras.main.fadeIn(1000, 0, 0, 0);
+        // this.cameras.main.setBounds(800, 600);
         this.cameras.main.startFollow(this.player);
 
         EventBus.emit("current-scene-ready", this);
