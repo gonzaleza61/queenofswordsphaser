@@ -34,6 +34,15 @@ export class Game extends Scene {
             frameRate: 8,
             repeat: -1,
         });
+
+        this.anims.create({
+            key: "walk",
+            frames: this.anims.generateFrameNumbers("KnightWalk", {
+                frames: [0, 1, 2, 3, 4, 5, 6],
+            }),
+            frameRate: 8,
+            repeat: -1,
+        });
         this.player.play("idle", true);
 
         platforms.create(400, 568, "ground").setScale(3).refreshBody();
@@ -130,14 +139,19 @@ export class Game extends Scene {
             const WASD = this.input.keyboard.addKeys("W, A, S, D, SPACE");
             if (cursors.left.isDown || WASD.A.isDown || this.isLeftPressed) {
                 this.player.body.setVelocityX(-160);
+                this.player.setFlipX(true);
+                this.player.playReverse("walk", true);
             } else if (
                 cursors.right.isDown ||
                 WASD.D.isDown ||
                 this.isRightPressed
             ) {
                 this.player.body.setVelocityX(160);
+                this.player.setFlipX(false);
+                this.player.play("walk", true);
             } else {
                 this.player.body.setVelocityX(0);
+                this.player.play("idle", true);
             }
 
             if (
