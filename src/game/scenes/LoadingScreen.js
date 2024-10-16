@@ -25,6 +25,11 @@ export class LoadingScreen extends Scene {
                 url: "Knight_player/Walking_KG_1.png",
                 frameConfig: { frameWidth: 100, frameHeight: 64 },
             },
+            {
+                key: "KnightJump",
+                url: "Knight_player/Jump_KG_1.png",
+                frameConfig: { frameWidth: 100, frameHeight: 64 },
+            },
         ]);
         this.load.image("qos", "queenofswords.png");
         this.load.image("background", "bg.png");
