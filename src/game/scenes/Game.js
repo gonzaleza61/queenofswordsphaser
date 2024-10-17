@@ -31,7 +31,7 @@ export class Game extends Scene {
             frames: this.anims.generateFrameNumbers("KnightIdle", {
                 frames: [0, 1, 2, 3],
             }),
-            frameRate: 8,
+            frameRate: 4,
             repeat: -1,
         });
 
