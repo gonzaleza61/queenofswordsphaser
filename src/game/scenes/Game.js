@@ -26,6 +26,8 @@ export class Game extends Scene {
         this.player = new Player(this, 50, 100);
         this.physics.add.collider(this.player, platforms);
 
+        this.player.body.setSize(32, 64);
+
         this.anims.create({
             key: "idle",
             frames: this.anims.generateFrameNumbers("KnightIdle", {
