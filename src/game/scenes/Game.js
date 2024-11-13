@@ -17,7 +17,7 @@ export class Game extends Scene {
         background.setDisplaySize(1000, 600);
 
         platforms = this.physics.add.staticGroup();
-        this.player = new Player(this, 50, 100);
+        this.player = new Player(this, 0, 490);
         this.physics.add.collider(this.player, platforms);
 
         this.player.body.setSize(32, 64);
@@ -77,8 +77,7 @@ export class Game extends Scene {
         this.isJumpPressed = false;
 
         this.cameras.main.fadeIn(1000, 0, 0, 0);
-        // this.cameras.main.setBounds(800, 600);
-        this.cameras.main.startFollow(this.player);
+        this.cameras.main.startFollow(this.player, true, 1, 0, 0, 200);
 
         EventBus.emit("current-scene-ready", this);
     }
