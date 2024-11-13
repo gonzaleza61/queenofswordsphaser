@@ -37,6 +37,7 @@ export class LoadingScreen extends Scene {
         this.load.image("left", "leftcontrol.png");
         this.load.image("right", "rightcontrol.png");
         this.load.image("jump", "jumpcontrol.png");
+        this.load.image("skyBG", "deserttile/BG/Layers/1.png");
         this.load.image("titleBG", "backgroundtest.jpg");
         this.load.image("titlePanel", "titlepanel.png");
 

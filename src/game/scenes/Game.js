@@ -7,20 +7,12 @@ export class Game extends Scene {
         super("Game");
     }
 
-    preload() {
-        // this.load.setPath("assets");
-        // this.load.image("qos", "queenofswords.png");
-        // // this.load.image("background", "bg.png");
-        // this.load.image("ground", "platform.png");
-        // this.load.image("left", "leftcontrol.png");
-        // this.load.image("right", "rightcontrol.png");
-        // this.load.image("jump", "jumpcontrol.png");
-    }
+    preload() {}
 
     create() {
         var platforms;
 
-        this.add.image(512, 384, "background");
+        this.add.image(512, 384, "skyBG").setScale(2);
 
         platforms = this.physics.add.staticGroup();
         this.player = new Player(this, 50, 100);
@@ -57,10 +49,6 @@ export class Game extends Scene {
         this.player.play("idle", true);
 
         platforms.create(400, 568, "ground").setScale(3).refreshBody();
-
-        platforms.create(600, 400, "ground");
-        platforms.create(50, 250, "ground");
-        platforms.create(750, 220, "ground");
 
         this.leftControl = this.add
             .image(70, 500, "left")
