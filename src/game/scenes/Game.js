@@ -50,7 +50,7 @@ export class Game extends Scene {
         });
         this.player.play("idle", true);
 
-        platforms.create(400, 568, "ground").setScale(3).refreshBody();
+        platforms.create(200, 568, "ground");
 
         this.leftControl = this.add
             .image(70, 500, "left")
