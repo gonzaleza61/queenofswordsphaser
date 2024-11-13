@@ -53,7 +53,7 @@ export class Game extends Scene {
         platforms.create(200, 568, "ground");
 
         this.leftControl = this.add
-            .image(70, 500, "left")
+            .image(100, 550, "left")
             .setScale(1.5)
             .setInteractive()
             .setAlpha(0.8)
