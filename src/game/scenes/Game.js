@@ -12,7 +12,9 @@ export class Game extends Scene {
     create() {
         var platforms;
 
-        this.add.image(512, 384, "skyBG").setScale(2);
+        const background = this.add.image(0, 0, "skyBG");
+        background.setOrigin(0, 0);
+        background.setDisplaySize(1000, 600);
 
         platforms = this.physics.add.staticGroup();
         this.player = new Player(this, 50, 100);

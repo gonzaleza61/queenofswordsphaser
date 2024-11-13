@@ -12,7 +12,7 @@ const config = {
     height: 600,
     transparent: "true",
     parent: "game-container",
-    backgroundColor: "#999999",
+    backgroundColor: "#000000",
     input: {
         activePointers: 3,
     },
@@ -25,7 +25,7 @@ const config = {
         },
     },
     scale: {
-        mode: Phaser.Scale.FIT,
+        mode: Phaser.Scale.NONE,
         autoCenter: Phaser.Scale.CENTER_BOTH,
     },
 };
