@@ -25,7 +25,7 @@ const config = {
         },
     },
     scale: {
-        mode: Phaser.Scale.NONE,
+        mode: Phaser.Scale.FIT,
     },
 };
 
