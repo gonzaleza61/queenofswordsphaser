@@ -12,7 +12,7 @@ const config = {
     height: 600,
     transparent: "true",
     parent: "game-container",
-    backgroundColor: "#000000",
+    backgroundColor: "#999999",
     input: {
         activePointers: 3,
     },

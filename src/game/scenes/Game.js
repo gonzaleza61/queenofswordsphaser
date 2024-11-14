@@ -15,9 +15,10 @@ export class Game extends Scene {
         const background = this.add.image(0, 0, "skyBG");
         background.setOrigin(0, 0);
         background.setDisplaySize(1000, 600);
+        background.setScrollFactor(1);
 
         platforms = this.physics.add.staticGroup();
-        this.player = new Player(this, 0, 490);
+        this.player = new Player(this, 500, 490);
         this.physics.add.collider(this.player, platforms);
 
         this.player.body.setSize(32, 64);
@@ -50,23 +51,23 @@ export class Game extends Scene {
         });
         this.player.play("idle", true);
 
-        platforms.create(200, 568, "ground");
+        platforms.create(400, 568, "ground");
 
         this.leftControl = this.add
-            .image(100, 550, "left")
+            .image(2600, 500, "left")
             .setScale(1.5)
             .setInteractive()
             .setAlpha(0.8)
             .setScrollFactor(0);
 
         this.rightControl = this.add
-            .image(200, 500, "right")
+            .image(2750, 500, "right")
             .setScale(1.5)
             .setInteractive()
             .setAlpha(0.8)
             .setScrollFactor(0);
         this.jumpControl = this.add
-            .image(700, 500, "jump")
+            .image(3400, 500, "jump")
             .setScale(1.5)
             .setInteractive()
             .setAlpha(0.8)
