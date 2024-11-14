@@ -38,6 +38,12 @@ export class LoadingScreen extends Scene {
         this.load.image("right", "rightcontrol.png");
         this.load.image("jump", "jumpcontrol.png");
         this.load.image("skyBG", "deserttile/BG/Layers/1.png");
+        this.load.image("cloudsBG", "deserttile/BG/Layers/2.png");
+        this.load.image("mountainOneBG", "deserttile/BG/Layers/3.png");
+        this.load.image("mountainTwoBG", "deserttile/BG/Layers/4.png");
+        this.load.image("desertOneBG", "deserttile/BG/Layers/5.png");
+        this.load.image("desertTwoBG", "deserttile/BG/Layers/6.png");
+        this.load.image("desertThreeBG", "deserttile/BG/Layers/7.png");
         this.load.image("titleBG", "backgroundtest.jpg");
         this.load.image("titlePanel", "titlepanel.png");
 
