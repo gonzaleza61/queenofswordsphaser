@@ -31,24 +31,21 @@ export class Game extends Scene {
             .setOrigin(0, 0)
             .setScrollFactor(0)
             .setScale(2);
-        const desertOne = this.add.tileSprite(0, 0, 1000, 600, "desertOneBG");
-        desertOne.setOrigin(0, 0);
-        // desertOne.setDisplaySize(1000, 600);
-        desertOne.setScrollFactor(0);
-        const desertTwo = this.add.tileSprite(0, 0, 1000, 600, "desertTwoBG");
-        desertTwo.setOrigin(0, 0);
-        // desertTwo.setDisplaySize(1000, 600);
-        desertTwo.setScrollFactor(0);
-        const desertThree = this.add.tileSprite(
-            0,
-            0,
-            1000,
-            600,
-            "desertThreeBG"
-        );
-        desertThree.setOrigin(0, 0);
-        desertThree.setDisplaySize(1000, 600);
-        desertThree.setScrollFactor(0);
+        this.desertOne = this.add
+            .tileSprite(2500, 0, 500, height, "desertOneBG")
+            .setOrigin(0, 0)
+            .setScrollFactor(0)
+            .setScale(2);
+        this.desertTwo = this.add
+            .tileSprite(2500, 0, 500, height, "desertTwoBG")
+            .setOrigin(0, 0)
+            .setScrollFactor(0)
+            .setScale(2);
+        this.desertThree = this.add
+            .tileSprite(2500, 0, 500, height, "desertThreeBG")
+            .setOrigin(0, 0)
+            .setScrollFactor(0)
+            .setScale(2);
 
         platforms = this.physics.add.staticGroup();
         this.player = new Player(this, 500, 490);
@@ -118,8 +115,11 @@ export class Game extends Scene {
     }
 
     update() {
-        this.mountainOne.tilePositionX += 0.5;
-        this.mountainTwo.tilePositionX += 1;
+        this.mountainOne.tilePositionX += 0.1;
+        this.mountainTwo.tilePositionX += 0.2;
+        this.desertOne.tilePositionX += 0.6;
+        this.desertTwo.tilePositionX += 0.8;
+        this.desertThree.tilePositionX += 1;
 
         if (this.leftControl) {
             this.leftControl.on("pointerdown", () => {
