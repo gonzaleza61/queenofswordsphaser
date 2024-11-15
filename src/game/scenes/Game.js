@@ -21,12 +21,12 @@ export class Game extends Scene {
         const clouds = this.add.tileSprite(0, 0, 1000, 600, "cloudsBG");
         clouds.setOrigin(0, 0);
         clouds.setScrollFactor(0);
-        const mountainOne = this.add
+        this.mountainOne = this.add
             .tileSprite(2500, 0, 500, height, "mountainOneBG")
             .setOrigin(0, 0)
             .setScrollFactor(0)
             .setScale(2);
-        const mountainTwo = this.add
+        this.mountainTwo = this.add
             .tileSprite(2500, 0, 500, height, "mountainTwoBG")
             .setOrigin(0, 0)
             .setScrollFactor(0)
@@ -118,6 +118,9 @@ export class Game extends Scene {
     }
 
     update() {
+        this.mountainOne.tilePositionX += 0.5;
+        this.mountainTwo.tilePositionX += 1;
+
         if (this.leftControl) {
             this.leftControl.on("pointerdown", () => {
                 this.isLeftPressed = true;
