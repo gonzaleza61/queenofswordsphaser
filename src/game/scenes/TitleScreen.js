@@ -19,8 +19,6 @@ export class TitleScreen extends Scene {
             .setScale(2);
         titlescreen.setOrigin(0.5, 0.5);
 
-        console.log(`${centerX} x  ${centerY} y`);
-
         this.add.text(3000, 200, "The Queen of Swords").setOrigin(0.5, 0.5);
         this.add
             .text(centerX, centerY, "Press Enter To Start Game", {

@@ -12,31 +12,40 @@ export class Game extends Scene {
     create() {
         var platforms;
 
+        const { width, height } = this.scale;
+
         const background = this.add.image(2500, 0, "skyBG");
         background.setOrigin(0, 0);
         background.setDisplaySize(1000, 600);
         background.setScrollFactor(0);
-        const clouds = this.add.image(2500, 0, "cloudsBG");
+        const clouds = this.add.tileSprite(0, 0, 1000, 600, "cloudsBG");
         clouds.setOrigin(0, 0);
-        clouds.setDisplaySize(1000, 600);
         clouds.setScrollFactor(0);
-        const mountainOne = this.add.image(2500, 0, "mountainOneBG");
-        mountainOne.setOrigin(0, 0);
-        mountainOne.setDisplaySize(1000, 600);
-        mountainOne.setScrollFactor(0);
-        const mountainTwo = this.add.image(2500, 0, "mountainTwoBG");
-        mountainTwo.setOrigin(0, 0);
-        mountainTwo.setDisplaySize(1000, 600);
-        mountainTwo.setScrollFactor(0);
-        const desertOne = this.add.image(2500, 0, "desertOneBG");
+        const mountainOne = this.add
+            .tileSprite(2500, 0, 500, height, "mountainOneBG")
+            .setOrigin(0, 0)
+            .setScrollFactor(0)
+            .setScale(2);
+        const mountainTwo = this.add
+            .tileSprite(2500, 0, 500, height, "mountainTwoBG")
+            .setOrigin(0, 0)
+            .setScrollFactor(0)
+            .setScale(2);
+        const desertOne = this.add.tileSprite(0, 0, 1000, 600, "desertOneBG");
         desertOne.setOrigin(0, 0);
-        desertOne.setDisplaySize(1000, 600);
+        // desertOne.setDisplaySize(1000, 600);
         desertOne.setScrollFactor(0);
-        const desertTwo = this.add.image(2500, 0, "desertTwoBG");
+        const desertTwo = this.add.tileSprite(0, 0, 1000, 600, "desertTwoBG");
         desertTwo.setOrigin(0, 0);
-        desertTwo.setDisplaySize(1000, 600);
+        // desertTwo.setDisplaySize(1000, 600);
         desertTwo.setScrollFactor(0);
-        const desertThree = this.add.image(2500, 0, "desertThreeBG");
+        const desertThree = this.add.tileSprite(
+            0,
+            0,
+            1000,
+            600,
+            "desertThreeBG"
+        );
         desertThree.setOrigin(0, 0);
         desertThree.setDisplaySize(1000, 600);
         desertThree.setScrollFactor(0);
@@ -102,6 +111,7 @@ export class Game extends Scene {
         this.isJumpPressed = false;
 
         this.cameras.main.fadeIn(1000, 0, 0, 0);
+
         this.cameras.main.startFollow(this.player, true, 1, 0, 0, 200);
 
         EventBus.emit("current-scene-ready", this);
