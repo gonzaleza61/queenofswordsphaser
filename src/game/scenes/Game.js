@@ -115,12 +115,6 @@ export class Game extends Scene {
     }
 
     update() {
-        this.mountainOne.tilePositionX += 0.1;
-        this.mountainTwo.tilePositionX += 0.2;
-        this.desertOne.tilePositionX += 0.6;
-        this.desertTwo.tilePositionX += 0.8;
-        this.desertThree.tilePositionX += 1;
-
         if (this.leftControl) {
             this.leftControl.on("pointerdown", () => {
                 this.isLeftPressed = true;
@@ -177,6 +171,11 @@ export class Game extends Scene {
             const WASD = this.input.keyboard.addKeys("W, A, S, D, SPACE");
             if (cursors.left.isDown || WASD.A.isDown || this.isLeftPressed) {
                 this.player.body.setVelocityX(-160);
+                this.mountainOne.tilePositionX -= 0.1;
+                this.mountainTwo.tilePositionX -= 0.2;
+                this.desertOne.tilePositionX -= 0.6;
+                this.desertTwo.tilePositionX -= 0.8;
+                this.desertThree.tilePositionX -= 1;
                 this.player.setFlipX(true);
                 if (this.player.body.touching.down) {
                     this.player.play("walk", true);
@@ -187,6 +186,13 @@ export class Game extends Scene {
                 this.isRightPressed
             ) {
                 this.player.body.setVelocityX(160);
+
+                this.mountainOne.tilePositionX += 0.1;
+                this.mountainTwo.tilePositionX += 0.2;
+                this.desertOne.tilePositionX += 0.6;
+                this.desertTwo.tilePositionX += 0.8;
+                this.desertThree.tilePositionX += 1;
+
                 this.player.setFlipX(false);
                 if (this.player.body.touching.down) {
                     this.player.play("walk", true);
