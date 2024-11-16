@@ -18,9 +18,11 @@ export class Game extends Scene {
         background.setOrigin(0, 0);
         background.setDisplaySize(1000, 600);
         background.setScrollFactor(0);
-        const clouds = this.add.tileSprite(0, 0, 1000, 600, "cloudsBG");
-        clouds.setOrigin(0, 0);
-        clouds.setScrollFactor(0);
+        this.clouds = this.add
+            .tileSprite(2500, 0, 500, height, "cloudsBG")
+            .setOrigin(0, 0)
+            .setScrollFactor(0)
+            .setScale(2);
         this.mountainOne = this.add
             .tileSprite(2500, 0, 500, height, "mountainOneBG")
             .setOrigin(0, 0)
@@ -172,6 +174,7 @@ export class Game extends Scene {
             if (cursors.left.isDown || WASD.A.isDown || this.isLeftPressed) {
                 this.player.body.setVelocityX(-160);
                 this.mountainOne.tilePositionX -= 0.1;
+                this.clouds.tilePositionX -= 0.15;
                 this.mountainTwo.tilePositionX -= 0.2;
                 this.desertOne.tilePositionX -= 0.6;
                 this.desertTwo.tilePositionX -= 0.8;
@@ -188,6 +191,7 @@ export class Game extends Scene {
                 this.player.body.setVelocityX(160);
 
                 this.mountainOne.tilePositionX += 0.1;
+                this.clouds.tilePositionX += 0.15;
                 this.mountainTwo.tilePositionX += 0.2;
                 this.desertOne.tilePositionX += 0.6;
                 this.desertTwo.tilePositionX += 0.8;
