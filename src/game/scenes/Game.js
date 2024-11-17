@@ -12,39 +12,48 @@ export class Game extends Scene {
     create() {
         var platforms;
 
+        const worldWidth = 6000;
+        const worldHeight = 600;
+
+        // Set world bounds
+        this.physics.world.setBounds(0, 0, worldWidth, worldHeight);
+
+        // Set camera bounds to match the game world
+        this.cameras.main.setBounds(0, 0, worldWidth, worldHeight);
+
         const { width, height } = this.scale;
 
-        const background = this.add.image(2500, 0, "skyBG");
+        const background = this.add.image(0, 0, "skyBG");
         background.setOrigin(0, 0);
         background.setDisplaySize(1000, 600);
         background.setScrollFactor(0);
         this.clouds = this.add
-            .tileSprite(2500, 0, 500, height, "cloudsBG")
+            .tileSprite(0, 0, 500, height, "cloudsBG")
             .setOrigin(0, 0)
             .setScrollFactor(0)
             .setScale(2);
         this.mountainOne = this.add
-            .tileSprite(2500, 0, 500, height, "mountainOneBG")
+            .tileSprite(0, 0, 500, height, "mountainOneBG")
             .setOrigin(0, 0)
             .setScrollFactor(0)
             .setScale(2);
         this.mountainTwo = this.add
-            .tileSprite(2500, 0, 500, height, "mountainTwoBG")
+            .tileSprite(0, 0, 500, height, "mountainTwoBG")
             .setOrigin(0, 0)
             .setScrollFactor(0)
             .setScale(2);
         this.desertOne = this.add
-            .tileSprite(2500, 0, 500, height, "desertOneBG")
+            .tileSprite(0, 0, 500, height, "desertOneBG")
             .setOrigin(0, 0)
             .setScrollFactor(0)
             .setScale(2);
         this.desertTwo = this.add
-            .tileSprite(2500, 0, 500, height, "desertTwoBG")
+            .tileSprite(0, 0, 500, height, "desertTwoBG")
             .setOrigin(0, 0)
             .setScrollFactor(0)
             .setScale(2);
         this.desertThree = this.add
-            .tileSprite(2500, 0, 500, height, "desertThreeBG")
+            .tileSprite(0, 0, 500, height, "desertThreeBG")
             .setOrigin(0, 0)
             .setScrollFactor(0)
             .setScale(2);
@@ -84,6 +93,10 @@ export class Game extends Scene {
         this.player.play("idle", true);
 
         platforms.create(400, 568, "ground");
+        platforms.create(600, 568, "ground");
+        platforms.create(800, 568, "ground");
+        platforms.create(900, 568, "ground");
+        platforms.create(1200, 568, "ground");
 
         this.leftControl = this.add
             .image(2600, 500, "left")

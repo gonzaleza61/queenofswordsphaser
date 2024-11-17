@@ -8,7 +8,7 @@ import Phaser from "phaser";
 //  https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
 const config = {
     type: AUTO,
-    width: 6000,
+    width: 1000,
     height: 600,
     transparent: "true",
     parent: "game-container",
@@ -27,6 +27,8 @@ const config = {
     scale: {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
+        // width: 1000,
+        // height: 600,
     },
 };
 
