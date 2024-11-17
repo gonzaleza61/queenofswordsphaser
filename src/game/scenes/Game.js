@@ -93,10 +93,10 @@ export class Game extends Scene {
         this.player.play("idle", true);
 
         platforms.create(400, 568, "ground");
-        platforms.create(600, 568, "ground");
-        platforms.create(800, 568, "ground");
-        platforms.create(900, 568, "ground");
-        platforms.create(1200, 568, "ground");
+        platforms.create(1000, 568, "ground");
+        platforms.create(1500, 568, "ground");
+        platforms.create(2000, 568, "ground");
+        platforms.create(2800, 568, "ground");
 
         this.leftControl = this.add
             .image(2600, 500, "left")
