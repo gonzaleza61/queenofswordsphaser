@@ -99,20 +99,20 @@ export class Game extends Scene {
         platforms.create(2800, 568, "ground");
 
         this.leftControl = this.add
-            .image(2600, 500, "left")
+            .image(100, 500, "left")
             .setScale(1.5)
             .setInteractive()
             .setAlpha(0.8)
             .setScrollFactor(0);
 
         this.rightControl = this.add
-            .image(2750, 500, "right")
+            .image(250, 500, "right")
             .setScale(1.5)
             .setInteractive()
             .setAlpha(0.8)
             .setScrollFactor(0);
         this.jumpControl = this.add
-            .image(3400, 500, "jump")
+            .image(850, 500, "jump")
             .setScale(1.5)
             .setInteractive()
             .setAlpha(0.8)
