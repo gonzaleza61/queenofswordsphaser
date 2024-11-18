@@ -47,6 +47,10 @@ export class LoadingScreen extends Scene {
         this.load.image("titleBG", "backgroundtest.jpg");
         this.load.image("titlePanel", "titlepanel.png");
 
+        this.load.image("blockStart", "deserttile/1 Tiles/Tile_32.png");
+        this.load.image("blockMid", "deserttile/1 Tiles/Tile_33.png");
+        this.load.image("blockEnd", "deserttile/1 Tiles/Tile_34.png");
+
         this.load.on("progress", (value) => {
             loadingText.setText(`Loading... ${parseInt(value * 100)}%`);
         });

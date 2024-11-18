@@ -92,11 +92,11 @@ export class Game extends Scene {
         });
         this.player.play("idle", true);
 
-        platforms.create(400, 568, "ground");
-        platforms.create(1000, 568, "ground");
-        platforms.create(1500, 568, "ground");
-        platforms.create(2000, 568, "ground");
-        platforms.create(2800, 568, "ground");
+        platforms.create(400, 584, "blockStart");
+        platforms.create(432, 584, "blockMid");
+        platforms.create(464, 584, "blockMid");
+        platforms.create(496, 584, "blockMid");
+        platforms.create(528, 584, "blockEnd");
 
         this.leftControl = this.add
             .image(100, 500, "left")
