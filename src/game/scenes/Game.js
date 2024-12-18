@@ -1,4 +1,5 @@
 import { Scene } from "phaser";
+import Phaser from "phaser";
 import { EventBus } from "../EventBus";
 import Player from "../player/Player";
 
@@ -27,36 +28,36 @@ export class Game extends Scene {
         background.setOrigin(0, 0);
         background.setDisplaySize(1000, 600);
         background.setScrollFactor(0);
-        // this.clouds = this.add
-        //     .tileSprite(0, 0, 500, height, "cloudsBG")
-        //     .setOrigin(0, 0)
-        //     .setScrollFactor(0)
-        //     .setScale(2);
-        // this.mountainOne = this.add
-        //     .tileSprite(0, 0, 500, height, "mountainOneBG")
-        //     .setOrigin(0, 0)
-        //     .setScrollFactor(0)
-        //     .setScale(2);
-        // this.mountainTwo = this.add
-        //     .tileSprite(0, 0, 500, height, "mountainTwoBG")
-        //     .setOrigin(0, 0)
-        //     .setScrollFactor(0)
-        //     .setScale(2);
-        // this.desertOne = this.add
-        //     .tileSprite(0, 0, 500, height, "desertOneBG")
-        //     .setOrigin(0, 0)
-        //     .setScrollFactor(0)
-        //     .setScale(2);
-        // this.desertTwo = this.add
-        //     .tileSprite(0, 0, 500, height, "desertTwoBG")
-        //     .setOrigin(0, 0)
-        //     .setScrollFactor(0)
-        //     .setScale(2);
-        // this.desertThree = this.add
-        //     .tileSprite(0, 0, 500, height, "desertThreeBG")
-        //     .setOrigin(0, 0)
-        //     .setScrollFactor(0)
-        //     .setScale(2);
+        this.clouds = this.add
+            .tileSprite(0, 0, 500, height, "cloudsBG")
+            .setOrigin(0, 0)
+            .setScrollFactor(0)
+            .setScale(2);
+        this.mountainOne = this.add
+            .tileSprite(0, 0, 500, height, "mountainOneBG")
+            .setOrigin(0, 0)
+            .setScrollFactor(0)
+            .setScale(2);
+        this.mountainTwo = this.add
+            .tileSprite(0, 0, 500, height, "mountainTwoBG")
+            .setOrigin(0, 0)
+            .setScrollFactor(0)
+            .setScale(2);
+        this.desertOne = this.add
+            .tileSprite(0, 0, 500, height, "desertOneBG")
+            .setOrigin(0, 0)
+            .setScrollFactor(0)
+            .setScale(2);
+        this.desertTwo = this.add
+            .tileSprite(0, 0, 500, height, "desertTwoBG")
+            .setOrigin(0, 0)
+            .setScrollFactor(0)
+            .setScale(2);
+        this.desertThree = this.add
+            .tileSprite(0, 0, 500, height, "desertThreeBG")
+            .setOrigin(0, 0)
+            .setScrollFactor(0)
+            .setScale(2);
 
         console.log("one");
 
@@ -66,13 +67,27 @@ export class Game extends Scene {
         const tileset = map.addTilesetImage("dtileset", "dtileset");
         console.log("three");
 
-        map.createLayer("desertblocktile");
+        const platformBlocks = map.createLayer(
+            "desertblocktile",
+            "dtileset",
+            0,
+            150
+        );
 
+        platformBlocks.setCollisionByProperty({ collides: true });
         platforms = this.physics.add.staticGroup();
-        this.player = new Player(this, 500, 490);
+        this.player = new Player(this, 500, 300);
         this.physics.add.collider(this.player, platforms);
 
         this.player.body.setSize(32, 64);
+        this.physics.add.collider(this.player, platformBlocks);
+
+        const debugGraphics = this.add.graphics();
+        map.renderDebug(debugGraphics, {
+            tileColor: null,
+            collidingTileColor: new Phaser.Display.Color(242, 234, 48, 0.5),
+            faceColor: new Phaser.Display.Color(85, 85, 85, 0.5),
+        });
 
         this.anims.create({
             key: "idle",
