@@ -1,0 +1,14 @@
+{ "columns":10,
+ "image":"deserttile\/1 Tiles\/Tileset.png",
+ "imageheight":192,
+ "imagewidth":320,
+ "margin":0,
+ "name":"dtileset",
+ "spacing":0,
+ "tilecount":60,
+ "tiledversion":"1.11.0",
+ "tileheight":32,
+ "tilewidth":32,
+ "type":"tileset",
+ "version":"1.10"
+}

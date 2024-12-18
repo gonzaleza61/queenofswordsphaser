@@ -27,36 +27,46 @@ export class Game extends Scene {
         background.setOrigin(0, 0);
         background.setDisplaySize(1000, 600);
         background.setScrollFactor(0);
-        this.clouds = this.add
-            .tileSprite(0, 0, 500, height, "cloudsBG")
-            .setOrigin(0, 0)
-            .setScrollFactor(0)
-            .setScale(2);
-        this.mountainOne = this.add
-            .tileSprite(0, 0, 500, height, "mountainOneBG")
-            .setOrigin(0, 0)
-            .setScrollFactor(0)
-            .setScale(2);
-        this.mountainTwo = this.add
-            .tileSprite(0, 0, 500, height, "mountainTwoBG")
-            .setOrigin(0, 0)
-            .setScrollFactor(0)
-            .setScale(2);
-        this.desertOne = this.add
-            .tileSprite(0, 0, 500, height, "desertOneBG")
-            .setOrigin(0, 0)
-            .setScrollFactor(0)
-            .setScale(2);
-        this.desertTwo = this.add
-            .tileSprite(0, 0, 500, height, "desertTwoBG")
-            .setOrigin(0, 0)
-            .setScrollFactor(0)
-            .setScale(2);
-        this.desertThree = this.add
-            .tileSprite(0, 0, 500, height, "desertThreeBG")
-            .setOrigin(0, 0)
-            .setScrollFactor(0)
-            .setScale(2);
+        // this.clouds = this.add
+        //     .tileSprite(0, 0, 500, height, "cloudsBG")
+        //     .setOrigin(0, 0)
+        //     .setScrollFactor(0)
+        //     .setScale(2);
+        // this.mountainOne = this.add
+        //     .tileSprite(0, 0, 500, height, "mountainOneBG")
+        //     .setOrigin(0, 0)
+        //     .setScrollFactor(0)
+        //     .setScale(2);
+        // this.mountainTwo = this.add
+        //     .tileSprite(0, 0, 500, height, "mountainTwoBG")
+        //     .setOrigin(0, 0)
+        //     .setScrollFactor(0)
+        //     .setScale(2);
+        // this.desertOne = this.add
+        //     .tileSprite(0, 0, 500, height, "desertOneBG")
+        //     .setOrigin(0, 0)
+        //     .setScrollFactor(0)
+        //     .setScale(2);
+        // this.desertTwo = this.add
+        //     .tileSprite(0, 0, 500, height, "desertTwoBG")
+        //     .setOrigin(0, 0)
+        //     .setScrollFactor(0)
+        //     .setScale(2);
+        // this.desertThree = this.add
+        //     .tileSprite(0, 0, 500, height, "desertThreeBG")
+        //     .setOrigin(0, 0)
+        //     .setScrollFactor(0)
+        //     .setScale(2);
+
+        console.log("one");
+
+        const map = this.make.tilemap({ key: "desertblocktile" });
+        console.log("two");
+
+        const tileset = map.addTilesetImage("dtileset", "dtileset");
+        console.log("three");
+
+        map.createLayer("desertblocktile");
 
         platforms = this.physics.add.staticGroup();
         this.player = new Player(this, 500, 490);
