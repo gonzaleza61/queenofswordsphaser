@@ -11,7 +11,7 @@ export class Game extends Scene {
     preload() {}
 
     create() {
-        var platforms;
+      
 
         const worldWidth = 6000;
         const worldHeight = 600;
@@ -75,9 +75,8 @@ export class Game extends Scene {
         );
 
         platformBlocks.setCollisionByProperty({ collides: true });
-        platforms = this.physics.add.staticGroup();
+        
         this.player = new Player(this, 500, 300);
-        this.physics.add.collider(this.player, platforms);
 
         this.player.body.setSize(32, 64);
         this.physics.add.collider(this.player, platformBlocks);
@@ -85,8 +84,8 @@ export class Game extends Scene {
         const debugGraphics = this.add.graphics();
         map.renderDebug(debugGraphics, {
             tileColor: null,
-            collidingTileColor: new Phaser.Display.Color(242, 234, 48, 0.5),
-            faceColor: new Phaser.Display.Color(85, 85, 85, 0.5),
+            collidingTileColor: new Phaser.Display.Color(242, 234, 48, 1),
+            faceColor: new Phaser.Display.Color(85, 85, 85, 1),
         });
 
         this.anims.create({
@@ -117,11 +116,6 @@ export class Game extends Scene {
         });
         this.player.play("idle", true);
 
-        platforms.create(400, 584, "blockStart");
-        platforms.create(432, 584, "blockMid");
-        platforms.create(464, 584, "blockMid");
-        platforms.create(496, 584, "blockMid");
-        platforms.create(528, 584, "blockEnd");
 
         this.leftControl = this.add
             .image(100, 500, "left")
@@ -218,7 +212,7 @@ export class Game extends Scene {
                 this.desertTwo.tilePositionX -= 0.8;
                 this.desertThree.tilePositionX -= 1;
                 this.player.setFlipX(true);
-                if (this.player.body.touching.down) {
+                if (this.player.body.blocked.down) {
                     this.player.play("walk", true);
                 }
             } else if (
@@ -236,20 +230,20 @@ export class Game extends Scene {
                 this.desertThree.tilePositionX += 1;
 
                 this.player.setFlipX(false);
-                if (this.player.body.touching.down) {
+                if (this.player.body.blocked.down) {
                     this.player.play("walk", true);
                 }
             } else {
                 this.player.body.setVelocityX(0);
-                if (this.player.body.touching.down) {
+                if (this.player.body.blocked.down) {
                     this.player.play("idle", true);
                 }
             }
 
             if (
-                (cursors.up.isDown && this.player.body.touching.down) ||
-                (WASD.SPACE.isDown && this.player.body.touching.down) ||
-                (this.isJumpPressed && this.player.body.touching.down)
+                (cursors.up.isDown && this.player.body.blocked.down) ||
+                (WASD.SPACE.isDown && this.player.body.blocked.down) ||
+                (this.isJumpPressed && this.player.body.blocked.down)
             ) {
                 this.player.body.setVelocityY(-330);
                 this.player.play("jump");
