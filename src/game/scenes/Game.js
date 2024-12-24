@@ -11,8 +11,6 @@ export class Game extends Scene {
     preload() {}
 
     create() {
-      
-
         const worldWidth = 6000;
         const worldHeight = 600;
 
@@ -75,7 +73,7 @@ export class Game extends Scene {
         );
 
         platformBlocks.setCollisionByProperty({ collides: true });
-        
+
         this.player = new Player(this, 500, 300);
 
         this.player.body.setSize(32, 64);
@@ -115,7 +113,6 @@ export class Game extends Scene {
             repeat: -1,
         });
         this.player.play("idle", true);
-
 
         this.leftControl = this.add
             .image(100, 500, "left")
@@ -202,15 +199,21 @@ export class Game extends Scene {
 
         if (this.player) {
             const cursors = this.input.keyboard.createCursorKeys();
+
+            const camera = this.cameras.main;
+
+            // Adjust the parallax effect based on camera.scrollX
+
+            this.clouds.tilePositionX = camera.scrollX * 0.004;
+            this.mountainOne.tilePositionX = camera.scrollX * 0.007;
+            this.mountainTwo.tilePositionX = camera.scrollX * 0.009;
+            this.desertOne.tilePositionX = camera.scrollX * 0.02;
+            this.desertTwo.tilePositionX = camera.scrollX * 0.04;
+            this.desertThree.tilePositionX = camera.scrollX * 0.08;
+
             const WASD = this.input.keyboard.addKeys("W, A, S, D, SPACE");
             if (cursors.left.isDown || WASD.A.isDown || this.isLeftPressed) {
                 this.player.body.setVelocityX(-160);
-                this.mountainOne.tilePositionX -= 0.1;
-                this.clouds.tilePositionX -= 0.15;
-                this.mountainTwo.tilePositionX -= 0.2;
-                this.desertOne.tilePositionX -= 0.6;
-                this.desertTwo.tilePositionX -= 0.8;
-                this.desertThree.tilePositionX -= 1;
                 this.player.setFlipX(true);
                 if (this.player.body.blocked.down) {
                     this.player.play("walk", true);
@@ -251,3 +254,4 @@ export class Game extends Scene {
         }
     }
 }
+
