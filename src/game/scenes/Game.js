@@ -121,6 +121,7 @@ export class Game extends Scene {
             frameRate: 12,
             repeat: 0,
         });
+
         this.player.play("idle", true);
 
         this.leftControl = this.add
@@ -211,8 +212,6 @@ export class Game extends Scene {
 
             const camera = this.cameras.main;
 
-            // Adjust the parallax effect based on camera.scrollX
-
             this.clouds.tilePositionX = camera.scrollX * 0.004;
             this.mountainOne.tilePositionX = camera.scrollX * 0.007;
             this.mountainTwo.tilePositionX = camera.scrollX * 0.009;
@@ -221,37 +220,6 @@ export class Game extends Scene {
             this.desertThree.tilePositionX = camera.scrollX * 0.08;
 
             const WASD = this.input.keyboard.addKeys("W, A, S, D, L, SPACE");
-            // if (cursors.left.isDown || WASD.A.isDown || this.isLeftPressed) {
-            //     this.player.body.setVelocityX(-200);
-            //     this.player.setFlipX(true);
-            //     if (this.player.body.blocked.down) {
-            //         this.player.play("walk", true);
-            //     }
-            // } else if (
-            //     cursors.right.isDown ||
-            //     WASD.D.isDown ||
-            //     this.isRightPressed
-            // ) {
-            //     this.player.body.setVelocityX(200);
-
-            //     this.player.setFlipX(false);
-            //     if (this.player.body.blocked.down) {
-            //         this.player.play("walk", true);
-            //         console.log("walk");
-            //     }
-            // } else {
-            //     this.player.body.setVelocityX(0);
-            //     // if (this.player.body.blocked.down) {
-            //     //     this.player.play("idle", true);
-            //     //     console.log("idle");
-            //     // }
-            // }
-
-            // if (WASD.L.isDown) {
-            //     this.player.play("attack", true);
-            //     this.player.body.setVelocityX(0);
-            //     console.log("attack");
-            // }
 
             if (WASD.L.isDown) {
                 if (this.player.anims.currentAnim?.key !== "attack") {
@@ -261,6 +229,8 @@ export class Game extends Scene {
                     // Listen for the animation completion event
                     this.player.once("animationcomplete-attack", () => {
                         console.log("Attack animation finished");
+                        console.log("idle");
+
                         this.player.play("idle", true);
                     });
                 }
@@ -296,9 +266,11 @@ export class Game extends Scene {
                 this.player.body.setVelocityX(0);
                 if (
                     this.player.body.blocked.down &&
-                    this.player.anims.currentAnim?.key !== "idle"
+                    this.player.anims.currentAnim?.key !== "idle" &&
+                    this.player.anims.currentAnim?.key !== "attack"
                 ) {
                     this.player.play("idle", true);
+                    console.log("idle 2");
                 }
             }
 
