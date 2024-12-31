@@ -32,7 +32,7 @@ export class LoadingScreen extends Scene {
             },
             {
                 key: "KnightAttack",
-                url: "Knight_player/Attack_KG_1.png",
+                url: "Knight_player/Attack_KG_2.png",
                 frameConfig: { frameWidth: 100, frameHeight: 64 },
             },
         ]);

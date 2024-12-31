@@ -101,7 +101,7 @@ export class Game extends Scene {
                 frames: [0, 1, 2, 3, 4, 5, 6],
             }),
             frameRate: 8,
-            repeat: -1,
+            repeat: 0,
         });
 
         this.anims.create({
@@ -110,7 +110,7 @@ export class Game extends Scene {
                 frames: [0, 1, 2, 3, 4, 5],
             }),
             frameRate: 3,
-            repeat: 1,
+            repeat: 0,
         });
 
         this.anims.create({
@@ -118,8 +118,8 @@ export class Game extends Scene {
             frames: this.anims.generateFrameNames("KnightAttack", {
                 frames: [0, 1, 2, 3, 4, 5],
             }),
-            frameRate: 4,
-            repeat: -1,
+            frameRate: 12,
+            repeat: 0,
         });
         this.player.play("idle", true);
 
@@ -221,10 +221,61 @@ export class Game extends Scene {
             this.desertThree.tilePositionX = camera.scrollX * 0.08;
 
             const WASD = this.input.keyboard.addKeys("W, A, S, D, L, SPACE");
-            if (cursors.left.isDown || WASD.A.isDown || this.isLeftPressed) {
+            // if (cursors.left.isDown || WASD.A.isDown || this.isLeftPressed) {
+            //     this.player.body.setVelocityX(-200);
+            //     this.player.setFlipX(true);
+            //     if (this.player.body.blocked.down) {
+            //         this.player.play("walk", true);
+            //     }
+            // } else if (
+            //     cursors.right.isDown ||
+            //     WASD.D.isDown ||
+            //     this.isRightPressed
+            // ) {
+            //     this.player.body.setVelocityX(200);
+
+            //     this.player.setFlipX(false);
+            //     if (this.player.body.blocked.down) {
+            //         this.player.play("walk", true);
+            //         console.log("walk");
+            //     }
+            // } else {
+            //     this.player.body.setVelocityX(0);
+            //     // if (this.player.body.blocked.down) {
+            //     //     this.player.play("idle", true);
+            //     //     console.log("idle");
+            //     // }
+            // }
+
+            // if (WASD.L.isDown) {
+            //     this.player.play("attack", true);
+            //     this.player.body.setVelocityX(0);
+            //     console.log("attack");
+            // }
+
+            if (WASD.L.isDown) {
+                if (this.player.anims.currentAnim?.key !== "attack") {
+                    this.player.play("attack", true);
+                    this.player.body.setVelocityX(0);
+
+                    // Listen for the animation completion event
+                    this.player.once("animationcomplete-attack", () => {
+                        console.log("Attack animation finished");
+                        this.player.play("idle", true);
+                    });
+                }
+            } else if (
+                cursors.left.isDown ||
+                WASD.A.isDown ||
+                this.isLeftPressed
+            ) {
                 this.player.body.setVelocityX(-160);
                 this.player.setFlipX(true);
-                if (this.player.body.blocked.down) {
+
+                if (
+                    this.player.body.blocked.down &&
+                    this.player.anims.currentAnim?.key !== "walk"
+                ) {
                     this.player.play("walk", true);
                 }
             } else if (
@@ -233,17 +284,21 @@ export class Game extends Scene {
                 this.isRightPressed
             ) {
                 this.player.body.setVelocityX(160);
-
                 this.player.setFlipX(false);
-                if (this.player.body.blocked.down) {
+
+                if (
+                    this.player.body.blocked.down &&
+                    this.player.anims.currentAnim?.key !== "walk"
+                ) {
                     this.player.play("walk", true);
-                    console.log("walk");
                 }
             } else {
                 this.player.body.setVelocityX(0);
-                if (this.player.body.blocked.down) {
+                if (
+                    this.player.body.blocked.down &&
+                    this.player.anims.currentAnim?.key !== "idle"
+                ) {
                     this.player.play("idle", true);
-                    console.log("idle");
                 }
             }
 
@@ -254,11 +309,7 @@ export class Game extends Scene {
             ) {
                 this.player.body.setVelocityY(-330);
                 this.player.play("jump");
-            }
-
-            if (WASD.L.isDown) {
-                this.player.play("attack", true);
-                console.log("attack");
+                console.log("jump");
             }
         }
     }
