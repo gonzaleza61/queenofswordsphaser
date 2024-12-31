@@ -30,6 +30,11 @@ export class LoadingScreen extends Scene {
                 url: "Knight_player/Jump_KG_2.png",
                 frameConfig: { frameWidth: 100, frameHeight: 64 },
             },
+            {
+                key: "KnightAttack",
+                url: "Knight_player/Attack_KG_1.png",
+                frameConfig: { frameWidth: 100, frameHeight: 64 },
+            },
         ]);
 
         this.load.image("dtileset", "deserttile/1 Tiles/Tileset.png");

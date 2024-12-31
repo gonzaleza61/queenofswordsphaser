@@ -110,6 +110,15 @@ export class Game extends Scene {
                 frames: [0, 1, 2, 3, 4, 5],
             }),
             frameRate: 3,
+            repeat: 1,
+        });
+
+        this.anims.create({
+            key: "attack",
+            frames: this.anims.generateFrameNames("KnightAttack", {
+                frames: [0, 1, 2, 3, 4, 5],
+            }),
+            frameRate: 4,
             repeat: -1,
         });
         this.player.play("idle", true);
@@ -211,7 +220,7 @@ export class Game extends Scene {
             this.desertTwo.tilePositionX = camera.scrollX * 0.04;
             this.desertThree.tilePositionX = camera.scrollX * 0.08;
 
-            const WASD = this.input.keyboard.addKeys("W, A, S, D, SPACE");
+            const WASD = this.input.keyboard.addKeys("W, A, S, D, L, SPACE");
             if (cursors.left.isDown || WASD.A.isDown || this.isLeftPressed) {
                 this.player.body.setVelocityX(-160);
                 this.player.setFlipX(true);
@@ -225,21 +234,16 @@ export class Game extends Scene {
             ) {
                 this.player.body.setVelocityX(160);
 
-                this.mountainOne.tilePositionX += 0.1;
-                this.clouds.tilePositionX += 0.15;
-                this.mountainTwo.tilePositionX += 0.2;
-                this.desertOne.tilePositionX += 0.6;
-                this.desertTwo.tilePositionX += 0.8;
-                this.desertThree.tilePositionX += 1;
-
                 this.player.setFlipX(false);
                 if (this.player.body.blocked.down) {
                     this.player.play("walk", true);
+                    console.log("walk");
                 }
             } else {
                 this.player.body.setVelocityX(0);
                 if (this.player.body.blocked.down) {
                     this.player.play("idle", true);
+                    console.log("idle");
                 }
             }
 
@@ -250,6 +254,11 @@ export class Game extends Scene {
             ) {
                 this.player.body.setVelocityY(-330);
                 this.player.play("jump");
+            }
+
+            if (WASD.L.isDown) {
+                this.player.play("attack", true);
+                console.log("attack");
             }
         }
     }
