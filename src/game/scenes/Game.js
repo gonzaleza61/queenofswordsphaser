@@ -244,7 +244,8 @@ export class Game extends Scene {
 
                 if (
                     this.player.body.blocked.down &&
-                    this.player.anims.currentAnim?.key !== "walk"
+                    this.player.anims.currentAnim?.key !== "walk" &&
+                    this.player.anims.currentAnim?.key !== "attack"
                 ) {
                     this.player.play("walk", true);
                 }
@@ -258,7 +259,8 @@ export class Game extends Scene {
 
                 if (
                     this.player.body.blocked.down &&
-                    this.player.anims.currentAnim?.key !== "walk"
+                    this.player.anims.currentAnim?.key !== "walk" &&
+                    this.player.anims.currentAnim?.key !== "attack"
                 ) {
                     this.player.play("walk", true);
                 }
