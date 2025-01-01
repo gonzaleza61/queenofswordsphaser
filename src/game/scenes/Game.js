@@ -297,17 +297,19 @@ export class Game extends Scene {
                 ) {
                     this.player.play("walk", true);
                 }
-            } else if (
-                (this.player.body.velocity.y > 0 ||
-                    this.player.body.velocity.y < 0) &&
-                this.player.anims.currentAnim?.key !== "jump" &&
-                this.player.anims.currentAnim?.key !== "attack"
-            ) {
-                this.player.play("falling", true);
-                console.log("falling");
-                console.log(this.player.body.blocked.down);
-                console.log(this.player.anims.currentAnim?.key);
-            } else {
+            }
+            // else if (
+            //     (this.player.body.velocity.y > 0 ||
+            //         this.player.body.velocity.y < 0) &&
+            //     this.player.anims.currentAnim?.key !== "jump" &&
+            //     this.player.anims.currentAnim?.key !== "attack"
+            // ) {
+            //     this.player.play("falling", true);
+            //     console.log("falling");
+            //     console.log(this.player.body.blocked.down);
+            //     console.log(this.player.anims.currentAnim?.key);
+            // }
+            else {
                 this.player.body.setVelocityX(0);
                 if (
                     this.player.body.blocked.down &&
@@ -317,6 +319,18 @@ export class Game extends Scene {
                     this.player.play("idle", true);
                     console.log("idle 2");
                 }
+            }
+
+            if (
+                (this.player.body.velocity.y > 0 ||
+                    this.player.body.velocity.y < 0) &&
+                this.player.anims.currentAnim?.key !== "jump" &&
+                this.player.anims.currentAnim?.key !== "attack"
+            ) {
+                this.player.play("falling", true);
+                console.log("falling");
+                console.log(this.player.body.blocked.down);
+                console.log(this.player.anims.currentAnim?.key);
             }
 
             if (
