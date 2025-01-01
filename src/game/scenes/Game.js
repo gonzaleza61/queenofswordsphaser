@@ -116,10 +116,19 @@ export class Game extends Scene {
         this.anims.create({
             key: "attack",
             frames: this.anims.generateFrameNames("KnightAttack", {
-                frames: [0, 1, 2, 3, 4, 5],
+                frames: [0, 1, 2, 3, 4],
             }),
             frameRate: 12,
             repeat: 0,
+        });
+
+        this.anims.create({
+            key: "falling",
+            frames: this.anims.generateFrameNames("KnightFall", {
+                frames: [0, 1, 2],
+            }),
+            frameRate: 12,
+            repeat: -1,
         });
 
         this.player.play("idle", true);
@@ -264,6 +273,14 @@ export class Game extends Scene {
                 ) {
                     this.player.play("walk", true);
                 }
+            } else if (
+                this.player.body.velocity.y !== 0 &&
+                this.player.anims.currentAnim?.key !== "jump" &&
+                this.player.anims.currentAnim?.key !== "attack"
+            ) {
+                this.player.play("falling", true);
+                console.log("falling");
+                console.log(this.player.body.blocked.down);
             } else {
                 this.player.body.setVelocityX(0);
                 if (
