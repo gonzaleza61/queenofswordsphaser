@@ -234,7 +234,7 @@ export class Game extends Scene {
                 this.attackControl.setAlpha(0.8);
             });
 
-            this.leftControl.on("pointerout", () => {
+            this.attackControl.on("pointerout", () => {
                 this.isAttackPressed = false;
                 this.attackControl.setAlpha(0.8);
             });
