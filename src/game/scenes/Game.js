@@ -147,15 +147,22 @@ export class Game extends Scene {
             .setAlpha(0.8)
             .setScrollFactor(0);
         this.jumpControl = this.add
-            .image(850, 500, "jump")
+            .image(750, 500, "jump")
             .setScale(1.5)
             .setInteractive()
             .setAlpha(0.8)
             .setScrollFactor(0);
 
+        this.attackControl = this.add
+            .image(900, 500, "attack")
+            .setScale(1.5)
+            .setInteractive()
+            .setAlpha(0.8)
+            .setScrollFactor(0);
         this.isLeftPressed = false;
         this.isRightPressed = false;
         this.isJumpPressed = false;
+        this.isAttackPressed = false;
 
         this.cameras.main.fadeIn(1000, 0, 0, 0);
 
@@ -216,6 +223,23 @@ export class Game extends Scene {
             });
         }
 
+        if (this.attackControl) {
+            this.attackControl.on("pointerdown", () => {
+                this.isAttackPressed = true;
+                this.attackControl.setAlpha(0.5);
+            });
+
+            this.attackControl.on("pointerup", () => {
+                this.isAttackPressed = false;
+                this.attackControl.setAlpha(0.8);
+            });
+
+            this.leftControl.on("pointerout", () => {
+                this.isAttackPressed = false;
+                this.attackControl.setAlpha(0.8);
+            });
+        }
+
         if (this.player) {
             const cursors = this.input.keyboard.createCursorKeys();
 
@@ -230,7 +254,7 @@ export class Game extends Scene {
 
             const WASD = this.input.keyboard.addKeys("W, A, S, D, L, SPACE");
 
-            if (WASD.L.isDown) {
+            if (WASD.L.isDown || this.isAttackPressed) {
                 if (this.player.anims.currentAnim?.key !== "attack") {
                     this.player.play("attack", true);
                     this.player.body.setVelocityX(0);
@@ -274,13 +298,15 @@ export class Game extends Scene {
                     this.player.play("walk", true);
                 }
             } else if (
-                this.player.body.velocity.y !== 0 &&
+                (this.player.body.velocity.y > 0 ||
+                    this.player.body.velocity.y < 0) &&
                 this.player.anims.currentAnim?.key !== "jump" &&
                 this.player.anims.currentAnim?.key !== "attack"
             ) {
                 this.player.play("falling", true);
                 console.log("falling");
                 console.log(this.player.body.blocked.down);
+                console.log(this.player.anims.currentAnim?.key);
             } else {
                 this.player.body.setVelocityX(0);
                 if (
