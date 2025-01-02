@@ -101,7 +101,7 @@ export class Game extends Scene {
                 frames: [0, 1, 2, 3, 4, 5, 6],
             }),
             frameRate: 8,
-            repeat: 0,
+            repeat: -1,
         });
 
         this.anims.create({
