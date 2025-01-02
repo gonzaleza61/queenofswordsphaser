@@ -69,7 +69,7 @@ export class Game extends Scene {
             "desertblocktile",
             "dtileset",
             0,
-            270
+            280
         );
 
         platformBlocks.setCollisionByProperty({ collides: true });
