@@ -353,7 +353,10 @@ export class Game extends Scene {
                 ) {
                     this.player.play("walk", true);
                 }
-            } else if (WASD.Q.isDown && this.canDash) {
+            } else if (
+                (WASD.Q.isDown || this.isLeftDashPressed) &&
+                this.canDash
+            ) {
                 if (!this.isDashing) {
                     this.player.play("dashing", true);
                     this.isDashing = true;
@@ -372,7 +375,10 @@ export class Game extends Scene {
                 this.player.once("animationcomplete-dashing", () => {
                     this.player.play("idle", true);
                 });
-            } else if (WASD.E.isDown && this.canDash) {
+            } else if (
+                (WASD.E.isDown || this.isRightDashPressed) &&
+                this.canDash
+            ) {
                 if (!this.isDashing) {
                     this.player.play("dashing", true);
                     this.isDashing = true;
