@@ -168,11 +168,16 @@ export class Game extends Scene {
             .setInteractive()
             .setAlpha(0.8)
             .setScrollFactor(0);
+        this.leftDash = this.add.image(80, 365, "leftDash");
+        this.rightDash = this.add.image(200, 365, "rightDash");
         this.isLeftPressed = false;
         this.isRightPressed = false;
         this.isJumpPressed = false;
         this.isAttackPressed = false;
+        this.isLeftDashPressed = false;
+        this.isRightDashPressed = false;
         this.canDash = true;
+        this.isDashing = false;
 
         this.cameras.main.fadeIn(1000, 0, 0, 0);
 
@@ -307,26 +312,38 @@ export class Game extends Scene {
                     this.player.play("walk", true);
                 }
             } else if (WASD.Q.isDown && this.canDash) {
-                this.player.play("dashing", true);
-                this.canDash = false;
+                if (!this.isDashing) {
+                    this.player.play("dashing", true);
+                    this.isDashing = true;
+                }
+
                 this.player.setFlipX(true);
-                this.time.delayedCall(1000, () => {
+                this.player.body.setVelocityX(-400);
+                this.time.delayedCall(400, () => {
+                    this.canDash = false;
+                    this.isDashing = false;
+                });
+                this.time.delayedCall(1500, () => {
                     this.canDash = true;
                 });
-
-                this.player.body.setVelocityX(-400);
 
                 this.player.once("animationcomplete-dashing", () => {
                     this.player.play("idle", true);
                 });
             } else if (WASD.E.isDown && this.canDash) {
-                this.player.play("dashing", true);
-                this.canDash = false;
+                if (!this.isDashing) {
+                    this.player.play("dashing", true);
+                    this.isDashing = true;
+                }
                 this.player.setFlipX(false);
-                this.time.delayedCall(1000, () => {
+                this.player.body.setVelocityX(400);
+                this.time.delayedCall(400, () => {
+                    this.canDash = false;
+                    this.isDashing = false;
+                });
+                this.time.delayedCall(1500, () => {
                     this.canDash = true;
                 });
-                this.player.body.setVelocityX(400);
                 this.player.once("animationcomplete-dashing", () => {
                     this.player.play("idle", true);
                 });
@@ -347,7 +364,8 @@ export class Game extends Scene {
                 (this.player.body.velocity.y > 0 ||
                     this.player.body.velocity.y < 0) &&
                 this.player.anims.currentAnim?.key !== "jump" &&
-                this.player.anims.currentAnim?.key !== "attack"
+                this.player.anims.currentAnim?.key !== "attack" &&
+                this.player.anims.currentAnim?.key !== "dashing"
             ) {
                 this.player.play("falling", true);
                 console.log("falling");
