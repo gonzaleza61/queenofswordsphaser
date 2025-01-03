@@ -131,6 +131,15 @@ export class Game extends Scene {
             repeat: -1,
         });
 
+        this.anims.create({
+            key: "dashing",
+            frames: this.anims.generateFrameNames("KnightDash", {
+                frames: [0, 1, 2, 3],
+            }),
+            frameRate: 12,
+            repeat: 0,
+        });
+
         this.player.play("idle", true);
 
         this.leftControl = this.add
@@ -252,7 +261,9 @@ export class Game extends Scene {
             this.desertTwo.tilePositionX = camera.scrollX * 0.04;
             this.desertThree.tilePositionX = camera.scrollX * 0.08;
 
-            const WASD = this.input.keyboard.addKeys("W, A, S, D, L, SPACE");
+            const WASD = this.input.keyboard.addKeys(
+                "W, A, S, D, L, Q, E, SPACE"
+            );
 
             if (WASD.L.isDown || this.isAttackPressed) {
                 if (this.player.anims.currentAnim?.key !== "attack") {
@@ -261,9 +272,6 @@ export class Game extends Scene {
 
                     // Listen for the animation completion event
                     this.player.once("animationcomplete-attack", () => {
-                        console.log("Attack animation finished");
-                        console.log("idle");
-
                         this.player.play("idle", true);
                     });
                 }
@@ -297,24 +305,30 @@ export class Game extends Scene {
                 ) {
                     this.player.play("walk", true);
                 }
-            }
-            // else if (
-            //     (this.player.body.velocity.y > 0 ||
-            //         this.player.body.velocity.y < 0) &&
-            //     this.player.anims.currentAnim?.key !== "jump" &&
-            //     this.player.anims.currentAnim?.key !== "attack"
-            // ) {
-            //     this.player.play("falling", true);
-            //     console.log("falling");
-            //     console.log(this.player.body.blocked.down);
-            //     console.log(this.player.anims.currentAnim?.key);
-            // }
-            else {
+            } else if (WASD.Q.isDown) {
+                this.player.play("dashing", true);
+                this.player.setFlipX(true);
+
+                this.player.body.setVelocityX(-400);
+
+                this.player.once("animationcomplete-dashing", () => {
+                    this.player.play("idle", true);
+                });
+            } else if (WASD.E.isDown) {
+                this.player.play("dashing", true);
+                this.player.setFlipX(false);
+                this.player.body.setVelocityX(400);
+
+                this.player.once("animationcomplete-dashing", () => {
+                    this.player.play("idle", true);
+                });
+            } else {
                 this.player.body.setVelocityX(0);
                 if (
                     this.player.body.blocked.down &&
                     this.player.anims.currentAnim?.key !== "idle" &&
-                    this.player.anims.currentAnim?.key !== "attack"
+                    this.player.anims.currentAnim?.key !== "attack" &&
+                    this.player.anims.currentAnim?.key !== "dashing"
                 ) {
                     this.player.play("idle", true);
                     console.log("idle 2");

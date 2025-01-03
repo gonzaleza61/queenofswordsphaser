@@ -40,13 +40,16 @@ export class LoadingScreen extends Scene {
                 url: "Knight_player/Fall_KG_2.png",
                 frameConfig: { frameWidth: 100, frameHeight: 64 },
             },
+            {
+                key: "KnightDash",
+                url: "Knight_player/Dashing_KG_1.png",
+                frameConfig: { frameWidth: 100, frameHeight: 64 },
+            },
         ]);
 
         this.load.image("dtileset", "deserttile/1 Tiles/Tileset.png");
-        console.log("hello");
 
         this.load.tilemapTiledJSON("desertblocktile", "qosmaponeembed.tmj");
-        console.log("here");
 
         this.load.image("qos", "queenofswords.png");
         this.load.image("background", "bg.png");
