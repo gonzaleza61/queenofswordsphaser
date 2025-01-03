@@ -168,8 +168,16 @@ export class Game extends Scene {
             .setInteractive()
             .setAlpha(0.8)
             .setScrollFactor(0);
-        this.leftDash = this.add.image(80, 365, "leftDash");
-        this.rightDash = this.add.image(200, 365, "rightDash");
+        this.leftDash = this.add
+            .image(80, 365, "leftDash")
+            .setInteractive()
+            .setAlpha(0.8)
+            .setScrollFactor(0);
+        this.rightDash = this.add
+            .image(200, 365, "rightDash")
+            .setInteractive()
+            .setAlpha(0.8)
+            .setScrollFactor(0);
         this.isLeftPressed = false;
         this.isRightPressed = false;
         this.isJumpPressed = false;
@@ -218,6 +226,40 @@ export class Game extends Scene {
             this.rightControl.on("pointerout", () => {
                 this.isRightPressed = false;
                 this.rightControl.setAlpha(0.8);
+            });
+        }
+
+        if (this.leftDash) {
+            this.leftDash.on("pointerdown", () => {
+                this.isLeftDashPressed = true;
+                this.leftDash.setAlpha(0.5);
+            });
+
+            this.leftDash.on("pointerup", () => {
+                this.isLeftDashPressed = false;
+                this.leftDash.setAlpha(0.8);
+            });
+
+            this.leftDash.on("pointerout", () => {
+                this.isLeftDashPressed = false;
+                this.leftDash.setAlpha(0.8);
+            });
+        }
+
+        if (this.rightDash) {
+            this.rightDash.on("pointerdown", () => {
+                this.isRightDashPressed = true;
+                this.rightDash.setAlpha(0.5);
+            });
+
+            this.rightDash.on("pointerup", () => {
+                this.isRightDashPressed = false;
+                this.rightDash.setAlpha(0.8);
+            });
+
+            this.rightDash.on("pointerout", () => {
+                this.isRightDashPressed = false;
+                this.rightDash.setAlpha(0.8);
             });
         }
 
