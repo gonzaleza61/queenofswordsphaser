@@ -172,6 +172,7 @@ export class Game extends Scene {
         this.isRightPressed = false;
         this.isJumpPressed = false;
         this.isAttackPressed = false;
+        this.canDash = true;
 
         this.cameras.main.fadeIn(1000, 0, 0, 0);
 
@@ -305,20 +306,27 @@ export class Game extends Scene {
                 ) {
                     this.player.play("walk", true);
                 }
-            } else if (WASD.Q.isDown) {
+            } else if (WASD.Q.isDown && this.canDash) {
                 this.player.play("dashing", true);
+                this.canDash = false;
                 this.player.setFlipX(true);
+                this.time.delayedCall(1000, () => {
+                    this.canDash = true;
+                });
 
                 this.player.body.setVelocityX(-400);
 
                 this.player.once("animationcomplete-dashing", () => {
                     this.player.play("idle", true);
                 });
-            } else if (WASD.E.isDown) {
+            } else if (WASD.E.isDown && this.canDash) {
                 this.player.play("dashing", true);
+                this.canDash = false;
                 this.player.setFlipX(false);
+                this.time.delayedCall(1000, () => {
+                    this.canDash = true;
+                });
                 this.player.body.setVelocityX(400);
-
                 this.player.once("animationcomplete-dashing", () => {
                     this.player.play("idle", true);
                 });
