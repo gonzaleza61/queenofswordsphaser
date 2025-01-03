@@ -134,27 +134,27 @@ export class Game extends Scene {
         this.player.play("idle", true);
 
         this.leftControl = this.add
-            .image(80, 380, "left")
-            .setScale(1.3)
+            .image(80, 460, "left")
+            .setScale(1.2)
             .setInteractive()
             .setAlpha(0.8)
             .setScrollFactor(0);
 
         this.rightControl = this.add
-            .image(200, 380, "right")
+            .image(200, 460, "right")
             .setScale(1.3)
             .setInteractive()
             .setAlpha(0.8)
             .setScrollFactor(0);
         this.jumpControl = this.add
-            .image(800, 380, "jump")
+            .image(800, 460, "jump")
             .setScale(1.3)
             .setInteractive()
             .setAlpha(0.8)
             .setScrollFactor(0);
 
         this.attackControl = this.add
-            .image(920, 380, "attack")
+            .image(920, 460, "attack")
             .setScale(1.3)
             .setInteractive()
             .setAlpha(0.8)
@@ -345,3 +345,4 @@ export class Game extends Scene {
         }
     }
 }
+
