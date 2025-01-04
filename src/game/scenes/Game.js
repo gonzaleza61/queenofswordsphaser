@@ -426,7 +426,7 @@ export class Game extends Scene {
                 (WASD.SPACE.isDown && this.player.body.blocked.down) ||
                 (this.isJumpPressed && this.player.body.blocked.down)
             ) {
-                this.player.body.setVelocityY(-330);
+                this.player.body.setVelocityY(-265);
                 this.player.play("jump");
             }
         }
