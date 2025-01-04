@@ -357,6 +357,8 @@ export class Game extends Scene {
                     this.player.play("dashing", true);
                     this.isDashing = true;
                 }
+                this.leftDash.setAlpha(0.2);
+                this.rightDash.setAlpha(0.2);
 
                 this.player.setFlipX(true);
                 this.player.body.setVelocityX(-400);
@@ -366,6 +368,8 @@ export class Game extends Scene {
                 });
                 this.coolDownTimer = this.time.delayedCall(1500, () => {
                     this.canDash = true;
+                    this.leftDash.setAlpha(0.8);
+                    this.rightDash.setAlpha(0.8);
                 });
 
                 this.player.once("animationcomplete-dashing", () => {
@@ -379,6 +383,8 @@ export class Game extends Scene {
                     this.player.play("dashing", true);
                     this.isDashing = true;
                 }
+                this.leftDash.setAlpha(0.2);
+                this.rightDash.setAlpha(0.2);
                 this.player.setFlipX(false);
                 this.player.body.setVelocityX(400);
                 this.dashTimer = this.time.delayedCall(400, () => {
@@ -387,6 +393,8 @@ export class Game extends Scene {
                 });
                 this.coolDownTimer = this.time.delayedCall(1500, () => {
                     this.canDash = true;
+                    this.leftDash.setAlpha(0.8);
+                    this.rightDash.setAlpha(0.8);
                 });
                 this.player.once("animationcomplete-dashing", () => {
                     this.player.play("idle", true);
