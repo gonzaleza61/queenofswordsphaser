@@ -57,13 +57,9 @@ export class Game extends Scene {
             .setScrollFactor(0)
             .setScale(2);
 
-        console.log("one");
-
         const map = this.make.tilemap({ key: "desertblocktile" });
-        console.log("two");
 
         const tileset = map.addTilesetImage("dtileset", "dtileset");
-        console.log("three");
 
         const platformBlocks = map.createLayer(
             "desertblocktile",
@@ -364,11 +360,11 @@ export class Game extends Scene {
 
                 this.player.setFlipX(true);
                 this.player.body.setVelocityX(-400);
-                this.time.delayedCall(400, () => {
+                this.dashTimer = this.time.delayedCall(400, () => {
                     this.canDash = false;
                     this.isDashing = false;
                 });
-                this.time.delayedCall(1500, () => {
+                this.coolDownTimer = this.time.delayedCall(1500, () => {
                     this.canDash = true;
                 });
 
@@ -385,11 +381,11 @@ export class Game extends Scene {
                 }
                 this.player.setFlipX(false);
                 this.player.body.setVelocityX(400);
-                this.time.delayedCall(400, () => {
+                this.dashTimer = this.time.delayedCall(400, () => {
                     this.canDash = false;
                     this.isDashing = false;
                 });
-                this.time.delayedCall(1500, () => {
+                this.coolDownTimer = this.time.delayedCall(1500, () => {
                     this.canDash = true;
                 });
                 this.player.once("animationcomplete-dashing", () => {
@@ -404,7 +400,6 @@ export class Game extends Scene {
                     this.player.anims.currentAnim?.key !== "dashing"
                 ) {
                     this.player.play("idle", true);
-                    console.log("idle 2");
                 }
             }
 
@@ -416,9 +411,6 @@ export class Game extends Scene {
                 this.player.anims.currentAnim?.key !== "dashing"
             ) {
                 this.player.play("falling", true);
-                console.log("falling");
-                console.log(this.player.body.blocked.down);
-                console.log(this.player.anims.currentAnim?.key);
             }
 
             if (
@@ -428,7 +420,6 @@ export class Game extends Scene {
             ) {
                 this.player.body.setVelocityY(-330);
                 this.player.play("jump");
-                console.log("jump");
             }
         }
     }
