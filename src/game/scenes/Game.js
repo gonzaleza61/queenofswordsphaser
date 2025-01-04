@@ -61,14 +61,30 @@ export class Game extends Scene {
 
         const tileset = map.addTilesetImage("dtileset", "dtileset");
 
-        const platformBlocks = map.createLayer(
+        this.platformBlocks = map.createLayer(
             "desertblocktile",
             "dtileset",
             0,
             280
         );
 
-        platformBlocks.setCollisionByProperty({ collides: true });
+        this.elevatorBlocks = map.createLayer(
+            "elevatorObs1",
+            "dtileset",
+            0,
+            280
+        );
+
+        this.elevatorBlocks2 = map.createLayer(
+            "elevatorObs2",
+            "dtileset",
+            0,
+            280
+        );
+
+        this.platformBlocks.setCollisionByProperty({ collides: true });
+        this.elevatorBlocks.setCollisionByProperty({ collides: true });
+        this.elevatorBlocks2.setCollisionByProperty({ collides: true });
 
         let sfx = this.sound.add("desertLevelMusic");
         sfx.loop = true;
@@ -77,7 +93,11 @@ export class Game extends Scene {
         this.player = new Player(this, 100, 500);
 
         this.player.body.setSize(32, 64);
-        this.physics.add.collider(this.player, platformBlocks);
+        this.physics.add.collider(this.player, [
+            this.platformBlocks,
+            this.elevatorBlocks,
+            this.elevatorBlocks2,
+        ]);
 
         const debugGraphics = this.add.graphics();
         map.renderDebug(debugGraphics, {
@@ -186,6 +206,30 @@ export class Game extends Scene {
         this.isRightDashPressed = false;
         this.canDash = true;
         this.isDashing = false;
+
+        this.tweens.add({
+            targets: this.elevatorBlocks,
+            y: 100, // Target position
+            duration: 2000, // Time in milliseconds
+            yoyo: true, // Reverse after reaching the target
+            repeat: -1, // Infinite loop
+            ease: "Sine.easeInOut", // Smooth easing
+            onUpdate: () => {
+                // Refresh the body if using static physics
+            },
+        });
+
+        this.tweens.add({
+            targets: this.elevatorBlocks2,
+            y: 440, // Target position
+            duration: 2000, // Time in milliseconds
+            yoyo: true, // Reverse after reaching the target
+            repeat: -1, // Infinite loop
+            ease: "Sine.easeInOut", // Smooth easing
+            onUpdate: () => {
+                // Refresh the body if using static physics
+            },
+        });
 
         this.cameras.main.fadeIn(1000, 0, 0, 0);
 
