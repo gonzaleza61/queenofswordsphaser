@@ -74,6 +74,8 @@ export class LoadingScreen extends Scene {
         this.load.image("blockMid", "deserttile/1 Tiles/Tile_33.png");
         this.load.image("blockEnd", "deserttile/1 Tiles/Tile_34.png");
 
+        this.load.audio("desertLevelMusic", "desertmusic.mp3");
+
         this.load.on("progress", (value) => {
             loadingText.setText(`Loading... ${parseInt(value * 100)}%`);
         });

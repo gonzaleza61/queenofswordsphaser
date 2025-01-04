@@ -70,7 +70,11 @@ export class Game extends Scene {
 
         platformBlocks.setCollisionByProperty({ collides: true });
 
-        this.player = new Player(this, 500, 300);
+        let sfx = this.sound.add("desertLevelMusic");
+        sfx.loop = true;
+        sfx.play();
+
+        this.player = new Player(this, 100, 500);
 
         this.player.body.setSize(32, 64);
         this.physics.add.collider(this.player, platformBlocks);
