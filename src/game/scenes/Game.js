@@ -144,7 +144,7 @@ export class Game extends Scene {
 
         this.leftControl = this.add
             .image(80, 460, "left")
-            .setScale(1.2)
+            .setScale(1.3)
             .setInteractive()
             .setAlpha(0.8)
             .setScrollFactor(0);
