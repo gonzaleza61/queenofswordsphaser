@@ -162,6 +162,12 @@ export class Game extends Scene {
 
         this.player.play("idle", true);
 
+        this.restartControl = this.add
+            .image(920, 50, "restart")
+            .setInteractive()
+            .setAlpha(0.8)
+            .setScrollFactor(0);
+
         this.leftControl = this.add
             .image(80, 460, "left")
             .setScale(1.3)
@@ -206,6 +212,11 @@ export class Game extends Scene {
         this.isRightDashPressed = false;
         this.canDash = true;
         this.isDashing = false;
+
+        this.restartControl.on("pointerdown", () => {
+            this.scene.start("Game");
+            console.log("game");
+        });
 
         this.tweens.add({
             targets: this.elevatorBlocks,

@@ -60,6 +60,7 @@ export class LoadingScreen extends Scene {
         this.load.image("attack", "attackcontrol.png");
         this.load.image("rightDash", "rightDashControl.png");
         this.load.image("leftDash", "leftDashControl.png");
+        this.load.image("restart", "restartControl.png");
         this.load.image("skyBG", "deserttile/BG/Layers/1.png");
         this.load.image("cloudsBG", "deserttile/BG/Layers/2.png");
         this.load.image("mountainOneBG", "deserttile/BG/Layers/3.png");
