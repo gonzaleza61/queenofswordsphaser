@@ -61,14 +61,22 @@ export class Game extends Scene {
 
         const tileset = map.addTilesetImage("dtileset", "dtileset");
 
+        // for (let i = 1; i <= 9; i++) {
+        //     const rocks = this.make.tilemap({
+        //         key: `deserttile/3 Objects/Stones/${i}.png`,
+        //     });
+        //     const tilesetName = `deserttile/3 Objects/Stones/${i}.png`; // This should match the tileset name in Tiled
+        //     const rockTileSet = map.addTilesetImage(tilesetName, tilesetName);
+        // }
+
+        // this.rockLayer = map.createLayer("rockObstacle", "rockTileSet", 0, 280);
+
         this.platformBlocks = map.createLayer(
             "desertblocktile",
             "dtileset",
             0,
             280
         );
-
-        this.rocks = map.createLayer("desertimg", "dtileset", 0, 280);
 
         this.elevatorBlocks = map.createLayer(
             "elevatorObs1",
@@ -217,6 +225,7 @@ export class Game extends Scene {
 
         this.restartControl.on("pointerdown", () => {
             this.scene.start("Game");
+            sfx.stop();
             console.log("game");
         });
 
