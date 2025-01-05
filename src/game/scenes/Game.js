@@ -68,6 +68,8 @@ export class Game extends Scene {
             280
         );
 
+        this.rocks = map.createLayer("desertimg", "dtileset", 0, 280);
+
         this.elevatorBlocks = map.createLayer(
             "elevatorObs1",
             "dtileset",
