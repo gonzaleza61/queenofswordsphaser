@@ -61,6 +61,27 @@ export class Game extends Scene {
 
         const tileset = map.addTilesetImage("dtileset", "dtileset");
 
+        const rocks = this.make.tilemap({
+            key: "rockObstacle",
+        });
+
+        var img1 = rocks.addTilesetImage(
+            "deserttile/3 Objects/Stones/1.png",
+            "stone1",
+            32,
+            32
+        );
+        var img2 = null;
+        var img3 = null;
+        var img4 = null;
+        var img5 = null;
+        var img6 = null;
+        var img7 = null;
+        var img8 = null;
+        var img9 = null;
+
+        this.rockLayer = map.createLayer("rockObstacle", img1, 0, 280);
+
         this.platformBlocks = map.createLayer(
             "desertblocktile",
             "dtileset",
@@ -85,6 +106,7 @@ export class Game extends Scene {
         this.platformBlocks.setCollisionByProperty({ collides: true });
         this.elevatorBlocks.setCollisionByProperty({ collides: true });
         this.elevatorBlocks2.setCollisionByProperty({ collides: true });
+        this.rockLayer.setCollisionByProperty({ collides: true });
 
         let sfx = this.sound.add("desertLevelMusic");
         sfx.loop = true;
@@ -97,6 +119,7 @@ export class Game extends Scene {
             this.platformBlocks,
             this.elevatorBlocks,
             this.elevatorBlocks2,
+            this.rockLayer,
         ]);
 
         const debugGraphics = this.add.graphics();
@@ -215,6 +238,7 @@ export class Game extends Scene {
 
         this.restartControl.on("pointerdown", () => {
             this.scene.start("Game");
+            sfx.stop();
             console.log("game");
         });
 
