@@ -60,27 +60,10 @@ export class Game extends Scene {
         const map = this.make.tilemap({ key: "desertblocktile" });
 
         const tileset = map.addTilesetImage("dtileset", "dtileset");
-
-        const rocks = this.make.tilemap({
-            key: "rockObstacle",
-        });
-
-        var img1 = rocks.addTilesetImage(
-            "deserttile/3 Objects/Stones/1.png",
-            "stone1",
-            32,
-            32
+        const StoneTileset = map.addTilesetImage(
+            "StoneTileset",
+            "StoneTileset"
         );
-        var img2 = null;
-        var img3 = null;
-        var img4 = null;
-        var img5 = null;
-        var img6 = null;
-        var img7 = null;
-        var img8 = null;
-        var img9 = null;
-
-        this.rockLayer = map.createLayer("rockObstacle", img1, 0, 280);
 
         this.platformBlocks = map.createLayer(
             "desertblocktile",
@@ -99,6 +82,13 @@ export class Game extends Scene {
         this.elevatorBlocks2 = map.createLayer(
             "elevatorObs2",
             "dtileset",
+            0,
+            280
+        );
+
+        this.rockLayer = map.createLayer(
+            "rockObstacle",
+            "StoneTileset",
             0,
             280
         );
