@@ -58,7 +58,12 @@ export class Game extends Scene {
             .setScale(2);
 
         const map = this.make.tilemap({ key: "desertblocktile" });
-
+        this.rockLayer = map.createLayer(
+            "rockObstacle",
+            "StoneTileset",
+            0,
+            280
+        );
         const tileset = map.addTilesetImage("dtileset", "dtileset");
         const StoneTileset = map.addTilesetImage(
             "StoneTileset",
@@ -86,13 +91,6 @@ export class Game extends Scene {
         this.elevatorBlocks2 = map.createLayer(
             "elevatorObs2",
             "dtileset",
-            0,
-            280
-        );
-
-        this.rockLayer = map.createLayer(
-            "rockObstacle",
-            "StoneTileset",
             0,
             280
         );
@@ -233,7 +231,6 @@ export class Game extends Scene {
         this.restartControl.on("pointerdown", () => {
             this.scene.start("Game");
             sfx.stop();
-            console.log("game");
         });
 
         this.tweens.add({
@@ -259,8 +256,6 @@ export class Game extends Scene {
                 // Refresh the body if using static physics
             },
         });
-
-        console.log(this.player);
 
         this.cameras.main.fadeIn(1000, 0, 0, 0);
 
