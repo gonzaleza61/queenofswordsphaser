@@ -50,6 +50,7 @@ export class LoadingScreen extends Scene {
         this.load.tilemapTiledJSON("rockObstacle", "qosmaponeembed.tmj");
         this.load.image("dtileset", "deserttile/1 Tiles/Tileset.png");
         this.load.image("StoneTileset", "StoneTileset.png");
+        this.load.image("PointerTileset", "PointerTileset.png");
         this.load.tilemapTiledJSON("desertblocktile", "qosmaponeembed.tmj");
 
         this.load.image("qos", "queenofswords.png");

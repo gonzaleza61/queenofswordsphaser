@@ -64,10 +64,14 @@ export class Game extends Scene {
             "StoneTileset",
             "StoneTileset"
         );
+        const PointerTileset = map.addTilesetImage(
+            "PointerTileset",
+            "PointerTileset"
+        );
 
         this.platformBlocks = map.createLayer(
             "desertblocktile",
-            "dtileset",
+            ["dtileset", "PointerTileset"],
             0,
             280
         );
@@ -255,6 +259,8 @@ export class Game extends Scene {
                 // Refresh the body if using static physics
             },
         });
+
+        console.log(this.player);
 
         this.cameras.main.fadeIn(1000, 0, 0, 0);
 
