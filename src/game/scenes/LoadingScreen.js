@@ -53,9 +53,6 @@ export class LoadingScreen extends Scene {
         this.load.image("PointerTileset", "PointerTileset.png");
         this.load.tilemapTiledJSON("desertblocktile", "qosmaponeembed.tmj");
 
-        this.load.image("qos", "queenofswords.png");
-        this.load.image("background", "bg.png");
-        this.load.image("ground", "platform.png");
         this.load.image("left", "leftcontrol.png");
         this.load.image("right", "rightcontrol.png");
         this.load.image("jump", "jumpcontrol.png");
@@ -63,6 +60,9 @@ export class LoadingScreen extends Scene {
         this.load.image("rightDash", "rightDashControl.png");
         this.load.image("leftDash", "leftDashControl.png");
         this.load.image("restart", "restartControl.png");
+        this.load.image("musicOn", "musicOn.png");
+        this.load.image("musicOff", "musicOff.png");
+
         this.load.image("skyBG", "deserttile/BG/Layers/1.png");
         this.load.image("cloudsBG", "deserttile/BG/Layers/2.png");
         this.load.image("mountainOneBG", "deserttile/BG/Layers/3.png");

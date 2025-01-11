@@ -58,17 +58,19 @@ export class Game extends Scene {
             .setScale(2);
 
         const map = this.make.tilemap({ key: "desertblocktile" });
-        this.rockLayer = map.createLayer(
-            "rockObstacle",
-            "StoneTileset",
-            0,
-            280
-        );
-        const tileset = map.addTilesetImage("dtileset", "dtileset");
+
         const StoneTileset = map.addTilesetImage(
             "StoneTileset",
             "StoneTileset"
         );
+        const tileset = map.addTilesetImage("dtileset", "dtileset");
+        this.rockLayer = map.createLayer(
+            "rockObstacle",
+            ["StoneTileset", "dtileset"],
+            0,
+            280
+        );
+
         const PointerTileset = map.addTilesetImage(
             "PointerTileset",
             "PointerTileset"
@@ -100,9 +102,9 @@ export class Game extends Scene {
         this.elevatorBlocks2.setCollisionByProperty({ collides: true });
         this.rockLayer.setCollisionByProperty({ collides: true });
 
-        let sfx = this.sound.add("desertLevelMusic");
-        sfx.loop = true;
-        sfx.play();
+        this.sfx = this.sound.add("desertLevelMusic");
+        this.sfx.loop = true;
+        this.sfx.play();
 
         this.player = new Player(this, 100, 500);
 
@@ -219,6 +221,17 @@ export class Game extends Scene {
             .setInteractive()
             .setAlpha(0.8)
             .setScrollFactor(0);
+        this.musicOn = this.add
+            .image(860, 50, "musicOn")
+            .setInteractive()
+            .setAlpha(0.8)
+            .setScrollFactor(0);
+        this.musicOff = this.add
+            .image(860, 50, "musicOff")
+            .setInteractive()
+            .setAlpha(0)
+            .setScrollFactor(0);
+        this.isMusicOff = false;
         this.isLeftPressed = false;
         this.isRightPressed = false;
         this.isJumpPressed = false;
@@ -230,7 +243,7 @@ export class Game extends Scene {
 
         this.restartControl.on("pointerdown", () => {
             this.scene.start("Game");
-            sfx.stop();
+            this.sfx.stop();
         });
 
         this.tweens.add({
@@ -265,6 +278,14 @@ export class Game extends Scene {
     }
 
     update() {
+        if (this.musicOn) {
+            this.musicOn.on("pointerdown", () => {
+                this.sfx.stop();
+                this.musicOn.setAlpha(0);
+                this.musicOff.setAlpha(0.8);
+            });
+        }
+
         if (this.leftControl) {
             this.leftControl.on("pointerdown", () => {
                 this.isLeftPressed = true;
