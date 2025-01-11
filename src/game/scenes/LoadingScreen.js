@@ -71,7 +71,6 @@ export class LoadingScreen extends Scene {
         this.load.image("desertTwoBG", "deserttile/BG/Layers/6.png");
         this.load.image("desertThreeBG", "deserttile/BG/Layers/7.png");
         this.load.image("titleBG", "backgroundtest.jpg");
-        this.load.image("titlePanel", "titlepanel.png");
 
         this.load.image("blockStart", "deserttile/1 Tiles/Tile_32.png");
         this.load.image("blockMid", "deserttile/1 Tiles/Tile_33.png");
