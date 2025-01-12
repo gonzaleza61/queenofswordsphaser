@@ -2,7 +2,6 @@ import MobileButton from "./MobileUIButton";
 
 class MobileUILayout {
     constructor(scene) {
-        this.scene = scene;
         this.restartControl = new MobileButton(
             this,
             920,

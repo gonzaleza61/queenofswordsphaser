@@ -178,6 +178,15 @@ export class Game extends Scene {
             repeat: 0,
         });
 
+        this.anims.create({
+            key: "wallgrab",
+            frames: this.anims.generateFrameNames("KnightWall", {
+                frames: [0, 1],
+            }),
+            frameRate: 12,
+            repeat: -1,
+        });
+
         this.player.play("idle", true);
 
         this.restartControl = new MobileButton(
