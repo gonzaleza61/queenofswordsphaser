@@ -264,7 +264,16 @@ export class Game extends Scene {
                 this.sfx.stop();
                 this.musicOn.setAlpha(0);
                 this.musicOff.setAlpha(0.8);
+                this.isMusicOff = true;
             });
+
+            if (this.isMusicOff) {
+                this.musicOff.on("pointerdown", () => {
+                    this.sfx.play();
+                    this.musicOn.setAlpha(0.8);
+                    this.musicOff.setAlpha(0);
+                });
+            }
         }
 
         if (this.leftControl) {
