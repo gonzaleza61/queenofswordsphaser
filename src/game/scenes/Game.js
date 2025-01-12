@@ -515,8 +515,8 @@ export class Game extends Scene {
                 this.player.play("jump");
             }
 
-            console.log('test');
-            
+            console.log("test");
+
             // if (
             //     (this.player.body.blocked.right ||
             //         this.player.body.blocked.left) &&
@@ -530,7 +530,7 @@ export class Game extends Scene {
             //     ) {
             //         this.player.body.setVelocityY(-265);
             //     }
-            }
+            // }
         }
     }
 }
