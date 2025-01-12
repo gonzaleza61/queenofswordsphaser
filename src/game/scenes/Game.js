@@ -505,6 +505,17 @@ export class Game extends Scene {
                 this.player.body.setVelocityY(-265);
                 this.player.play("jump");
             }
+
+            if (
+                (this.player.body.blocked.right ||
+                    this.player.body.blocked.left) &&
+                !this.player.body.blocked.down
+            ) {
+                this.player.play("wallgrab");
+                if (WASD.SPACE.isDown) {
+                    this.player.body.setVelocityY(-265);
+                }
+            }
         }
     }
 }

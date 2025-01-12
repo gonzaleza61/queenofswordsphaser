@@ -15,6 +15,11 @@ export class LoadingScreen extends Scene {
         //Player Sprites
         this.load.spritesheet([
             {
+                key: "KnightWall",
+                url: "Knight_player/Wallside_KG_1.png",
+                frameConfig: { frameWidth: 100, frameHeight: 64 },
+            },
+            {
                 key: "KnightIdle",
                 url: "Knight_player/Idle_KG_2.png",
                 frameConfig: {
@@ -45,11 +50,6 @@ export class LoadingScreen extends Scene {
             {
                 key: "KnightDash",
                 url: "Knight_player/Dashing_KG_1.png",
-                frameConfig: { frameWidth: 100, frameHeight: 64 },
-            },
-            {
-                key: "KnightWall",
-                url: "Knight_player/Wallside_KG_1",
                 frameConfig: { frameWidth: 100, frameHeight: 64 },
             },
         ]);
