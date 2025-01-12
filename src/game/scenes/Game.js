@@ -515,6 +515,8 @@ export class Game extends Scene {
                 this.player.play("jump");
             }
 
+            console.log('test');
+            
             // if (
             //     (this.player.body.blocked.right ||
             //         this.player.body.blocked.left) &&
