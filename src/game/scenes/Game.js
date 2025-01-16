@@ -12,8 +12,8 @@ export class Game extends Scene {
     preload() {}
 
     create() {
-        const worldWidth = 6000;
-        const worldHeight = 600;
+        const worldWidth = 6016;
+        const worldHeight = 608;
 
         // Set world bounds
         this.physics.world.setBounds(0, 0, worldWidth, worldHeight);
@@ -21,7 +21,7 @@ export class Game extends Scene {
         // Set camera bounds to match the game world
         this.cameras.main.setBounds(0, 0, worldWidth, worldHeight);
 
-        const { width, height } = this.scale;
+        const { height } = this.scale;
 
         const background = this.add.image(0, 0, "skyBG");
         background.setOrigin(0, 0);
@@ -69,7 +69,7 @@ export class Game extends Scene {
             "rockObstacle",
             ["StoneTileset", "dtileset"],
             0,
-            280
+            0
         );
 
         const PointerTileset = map.addTilesetImage(
@@ -81,21 +81,16 @@ export class Game extends Scene {
             "desertblocktile",
             ["dtileset", "PointerTileset"],
             0,
-            280
+            0
         );
 
-        this.elevatorBlocks = map.createLayer(
-            "elevatorObs1",
-            "dtileset",
-            0,
-            280
-        );
+        this.elevatorBlocks = map.createLayer("elevatorObs1", "dtileset", 0, 0);
 
         this.elevatorBlocks2 = map.createLayer(
             "elevatorObs2",
             "dtileset",
             0,
-            280
+            0
         );
 
         this.platformBlocks.setCollisionByProperty({ collides: true });
@@ -181,7 +176,7 @@ export class Game extends Scene {
         this.anims.create({
             key: "wallgrab",
             frames: this.anims.generateFrameNames("KnightWall", {
-                frames: [0, 1],
+                frames: [0, 1, 2],
             }),
             frameRate: 12,
             repeat: -1,
@@ -517,20 +512,20 @@ export class Game extends Scene {
 
             console.log("test");
 
-            // if (
-            //     (this.player.body.blocked.right ||
-            //         this.player.body.blocked.left) &&
-            //     !this.player.body.blocked.down
-            // ) {
-            //     this.player.play("wallgrab");
-            //     if (
-            //         WASD.SPACE.isDown ||
-            //         this.isJumpPressed ||
-            //         cursors.up.isDown
-            //     ) {
-            //         this.player.body.setVelocityY(-265);
-            //     }
-            // }
+            if (
+                (this.player.body.blocked.right ||
+                    this.player.body.blocked.left) &&
+                !this.player.body.blocked.down
+            ) {
+                this.player.play("wallgrab");
+                if (
+                    WASD.SPACE.isDown ||
+                    this.isJumpPressed ||
+                    cursors.up.isDown
+                ) {
+                    this.player.body.setVelocityY(-265);
+                }
+            }
         }
     }
 }

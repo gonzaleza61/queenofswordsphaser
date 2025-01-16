@@ -16,7 +16,7 @@ export class LoadingScreen extends Scene {
         this.load.spritesheet([
             {
                 key: "KnightWall",
-                url: "Knight_player/Wallside_KG_1.png",
+                url: "Knight_player/Grab_idle_KG_1.png",
                 frameConfig: { frameWidth: 100, frameHeight: 64 },
             },
             {
