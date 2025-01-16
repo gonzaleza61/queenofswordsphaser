@@ -11,7 +11,14 @@ export class LoadingScreen extends Scene {
             .text(400, 300, "Loading...", { fontSize: "32px", fill: "#fff" })
             .setOrigin(0.5, 0.5);
         this.load.setPath("assets");
+
+        //Player Sprites
         this.load.spritesheet([
+            {
+                key: "KnightWall",
+                url: "Knight_player/Wallside_KG_1.png",
+                frameConfig: { frameWidth: 100, frameHeight: 64 },
+            },
             {
                 key: "KnightIdle",
                 url: "Knight_player/Idle_KG_2.png",
@@ -47,15 +54,14 @@ export class LoadingScreen extends Scene {
             },
         ]);
 
+        //Tilesets
         this.load.tilemapTiledJSON("rockObstacle", "qosmaponeembed.tmj");
+        this.load.tilemapTiledJSON("desertblocktile", "qosmaponeembed.tmj");
         this.load.image("dtileset", "deserttile/1 Tiles/Tileset.png");
         this.load.image("StoneTileset", "StoneTileset.png");
         this.load.image("PointerTileset", "PointerTileset.png");
-        this.load.tilemapTiledJSON("desertblocktile", "qosmaponeembed.tmj");
 
-        this.load.image("qos", "queenofswords.png");
-        this.load.image("background", "bg.png");
-        this.load.image("ground", "platform.png");
+        //Mobile UI Buttons
         this.load.image("left", "leftcontrol.png");
         this.load.image("right", "rightcontrol.png");
         this.load.image("jump", "jumpcontrol.png");
@@ -63,6 +69,10 @@ export class LoadingScreen extends Scene {
         this.load.image("rightDash", "rightDashControl.png");
         this.load.image("leftDash", "leftDashControl.png");
         this.load.image("restart", "restartControl.png");
+        this.load.image("musicOn", "musicOn.png");
+        this.load.image("musicOff", "musicOff.png");
+
+        //Backgroind
         this.load.image("skyBG", "deserttile/BG/Layers/1.png");
         this.load.image("cloudsBG", "deserttile/BG/Layers/2.png");
         this.load.image("mountainOneBG", "deserttile/BG/Layers/3.png");
@@ -71,11 +81,6 @@ export class LoadingScreen extends Scene {
         this.load.image("desertTwoBG", "deserttile/BG/Layers/6.png");
         this.load.image("desertThreeBG", "deserttile/BG/Layers/7.png");
         this.load.image("titleBG", "backgroundtest.jpg");
-        this.load.image("titlePanel", "titlepanel.png");
-
-        this.load.image("blockStart", "deserttile/1 Tiles/Tile_32.png");
-        this.load.image("blockMid", "deserttile/1 Tiles/Tile_33.png");
-        this.load.image("blockEnd", "deserttile/1 Tiles/Tile_34.png");
 
         this.load.audio("desertLevelMusic", "desertmusic.mp3");
 
