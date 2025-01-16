@@ -224,7 +224,7 @@ export class Game extends Scene {
 
         this.tweens.add({
             targets: this.elevatorBlocks,
-            y: 100, // Target position
+            y: -150, // Target position
             duration: 2000, // Time in milliseconds
             yoyo: true, // Reverse after reaching the target
             repeat: -1, // Infinite loop
@@ -236,7 +236,7 @@ export class Game extends Scene {
 
         this.tweens.add({
             targets: this.elevatorBlocks2,
-            y: 440, // Target position
+            y: 150, // Target position
             duration: 2000, // Time in milliseconds
             yoyo: true, // Reverse after reaching the target
             repeat: -1, // Infinite loop
@@ -509,8 +509,6 @@ export class Game extends Scene {
                 this.player.body.setVelocityY(-265);
                 this.player.play("jump");
             }
-
-            console.log("test");
 
             if (
                 (this.player.body.blocked.right ||
