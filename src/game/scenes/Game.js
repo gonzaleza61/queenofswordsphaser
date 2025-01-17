@@ -77,6 +77,26 @@ export class Game extends Scene {
             "PointerTileset"
         );
 
+        this.coinLayer = map.getObjectLayer("Coins");
+
+        this.anims.create({
+            key: "CoinJump",
+            frames: this.anims.generateFrameNumbers("CoinSprite", {
+                frames: [0, 1, 2, 3],
+            }),
+            frameRate: 4,
+            repeat: -1,
+        });
+
+        this.coinLayer.objects.forEach((object) => {
+            const sprite = this.add
+                .sprite(object.x, object.y, "CoinSprite")
+                .setScale(2);
+
+            sprite.setOrigin(0, 1);
+            sprite.play("CoinJump");
+        });
+
         this.platformBlocks = map.createLayer(
             "desertblocktile",
             ["dtileset", "PointerTileset"],
