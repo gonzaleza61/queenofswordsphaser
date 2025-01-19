@@ -86,14 +86,14 @@ export class Game extends Scene {
             frames: this.anims.generateFrameNumbers("CoinSprite", {
                 frames: [0, 1, 2, 3],
             }),
-            frameRate: 4,
+            frameRate: 9,
             repeat: -1,
         });
 
         this.coinLayer.objects.forEach((coinObj) => {
             const coin = this.coins
                 .create(coinObj.x, coinObj.y, "CoinSprite")
-                .setScale(1);
+                .setScale(1.5);
 
             coin.play("CoinJump");
         });
@@ -150,7 +150,24 @@ export class Game extends Scene {
         this.score = 0;
 
         this.scoreboard = this.add
-            .text(100, 100, `Score: ${this.score}`)
+            .text(50, 50, `Score: ${this.score}`, {
+                fontSize: "20px",
+                fontFamily: "Arial",
+                color: "#ffffff",
+                backgroundColor: "#000000",
+                padding: { x: 10, y: 5 },
+                align: "center",
+                stroke: "#ff0000",
+                strokeThickness: 2,
+                shadow: {
+                    offsetX: 2,
+                    offsetY: 2,
+                    color: "#000000",
+                    blur: 4,
+                    stroke: true,
+                    fill: true,
+                },
+            })
             .setScrollFactor(0);
 
         const debugGraphics = this.add.graphics();
