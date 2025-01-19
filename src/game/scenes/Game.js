@@ -79,6 +79,8 @@ export class Game extends Scene {
 
         this.coinLayer = map.getObjectLayer("Coins");
 
+        this.coins = this.physics.add.staticGroup();
+
         this.anims.create({
             key: "CoinJump",
             frames: this.anims.generateFrameNumbers("CoinSprite", {
@@ -88,14 +90,19 @@ export class Game extends Scene {
             repeat: -1,
         });
 
-        this.coinLayer.objects.forEach((object) => {
-            const sprite = this.add
-                .sprite(object.x, object.y, "CoinSprite")
-                .setScale(2);
+        this.coinLayer.objects.forEach((coinObj) => {
+            const coin = this.coins
+                .create(coinObj.x, coinObj.y, "CoinSprite")
+                .setScale(1);
 
-            sprite.setOrigin(0, 1);
-            sprite.play("CoinJump");
+            coin.play("CoinJump");
         });
+
+        // function collectCoin(player, coin) {
+        //     coin.destroy();
+        //     this.score += 1;
+        //     console.log(this.score);
+        // }
 
         this.platformBlocks = map.createLayer(
             "desertblocktile",
@@ -131,6 +138,20 @@ export class Game extends Scene {
             this.elevatorBlocks2,
             this.rockLayer,
         ]);
+
+        this.physics.add.overlap(
+            this.player,
+            this.coins,
+            this.collectCoin,
+            null,
+            this
+        );
+
+        this.score = 0;
+
+        this.scoreboard = this.add
+            .text(100, 100, `Score: ${this.score}`)
+            .setScrollFactor(0);
 
         const debugGraphics = this.add.graphics();
         map.renderDebug(debugGraphics, {
@@ -271,6 +292,12 @@ export class Game extends Scene {
         this.cameras.main.startFollow(this.player, true, 1, 0, 0, 200);
 
         EventBus.emit("current-scene-ready", this);
+    }
+
+    collectCoin(player, coin) {
+        coin.destroy();
+        this.score += 10;
+        this.scoreboard.setText(`Score: ${this.score}`);
     }
 
     update() {
@@ -530,20 +557,20 @@ export class Game extends Scene {
                 this.player.play("jump");
             }
 
-            if (
-                (this.player.body.blocked.right ||
-                    this.player.body.blocked.left) &&
-                !this.player.body.blocked.down
-            ) {
-                this.player.play("wallgrab");
-                if (
-                    WASD.SPACE.isDown ||
-                    this.isJumpPressed ||
-                    cursors.up.isDown
-                ) {
-                    this.player.body.setVelocityY(-265);
-                }
-            }
+            // if (
+            //     (this.player.body.blocked.right ||
+            //         this.player.body.blocked.left) &&
+            //     !this.player.body.blocked.down
+            // ) {
+            //     this.player.play("wallgrab");
+            //     if (
+            //         WASD.SPACE.isDown ||
+            //         this.isJumpPressed ||
+            //         cursors.up.isDown
+            //     ) {
+            //         this.player.body.setVelocityY(-265);
+            //     }
+            // }
         }
     }
 }
