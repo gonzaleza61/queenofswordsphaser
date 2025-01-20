@@ -77,7 +77,7 @@ export class LoadingScreen extends Scene {
         this.load.image("musicOn", "musicOn.png");
         this.load.image("musicOff", "musicOff.png");
 
-        //Backgroind
+        //Background
         this.load.image("skyBG", "deserttile/BG/Layers/1.png");
         this.load.image("cloudsBG", "deserttile/BG/Layers/2.png");
         this.load.image("mountainOneBG", "deserttile/BG/Layers/3.png");
@@ -87,6 +87,9 @@ export class LoadingScreen extends Scene {
         this.load.image("desertThreeBG", "deserttile/BG/Layers/7.png");
         this.load.image("titleBG", "backgroundtest.jpg");
 
+        //Font
+
+        //Audio
         this.load.audio("desertLevelMusic", "desertmusic.mp3");
 
         this.load.on("progress", (value) => {

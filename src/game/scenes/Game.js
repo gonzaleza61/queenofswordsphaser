@@ -150,23 +150,10 @@ export class Game extends Scene {
         this.score = 0;
 
         this.scoreboard = this.add
-            .text(50, 50, `Score: ${this.score}`, {
-                fontSize: "20px",
-                fontFamily: "Arial",
-                color: "#ffffff",
-                backgroundColor: "#000000",
-                padding: { x: 10, y: 5 },
-                align: "center",
-                stroke: "#ff0000",
-                strokeThickness: 2,
-                shadow: {
-                    offsetX: 2,
-                    offsetY: 2,
-                    color: "#000000",
-                    blur: 4,
-                    stroke: true,
-                    fill: true,
-                },
+            .text(50, 50, `SCORE: ${this.score}`, {
+                fontSize: "30px",
+                fontFamily: "Pixelify Sans",
+                color: "#000000",
             })
             .setScrollFactor(0);
 
@@ -314,7 +301,7 @@ export class Game extends Scene {
     collectCoin(player, coin) {
         coin.destroy();
         this.score += 10;
-        this.scoreboard.setText(`Score: ${this.score}`);
+        this.scoreboard.setText(`SCORE: ${this.score}`);
     }
 
     update() {
@@ -586,6 +573,7 @@ export class Game extends Scene {
             //         cursors.up.isDown
             //     ) {
             //         this.player.body.setVelocityY(-265);
+            //         this.player.body.setVelocityX(265);
             //     }
             // }
         }
