@@ -91,6 +91,7 @@ export class LoadingScreen extends Scene {
 
         //Audio
         this.load.audio("desertLevelMusic", "desertmusic.mp3");
+        this.load.audio("coinGrab2", "handleCoins.ogg");
 
         this.load.on("progress", (value) => {
             loadingText.setText(`Loading... ${parseInt(value * 100)}%`);

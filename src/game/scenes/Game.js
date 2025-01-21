@@ -98,12 +98,6 @@ export class Game extends Scene {
             coin.play("CoinJump");
         });
 
-        // function collectCoin(player, coin) {
-        //     coin.destroy();
-        //     this.score += 1;
-        //     console.log(this.score);
-        // }
-
         this.platformBlocks = map.createLayer(
             "desertblocktile",
             ["dtileset", "PointerTileset"],
@@ -125,9 +119,11 @@ export class Game extends Scene {
         this.elevatorBlocks2.setCollisionByProperty({ collides: true });
         this.rockLayer.setCollisionByProperty({ collides: true });
 
+        //Audio
         this.sfx = this.sound.add("desertLevelMusic");
         this.sfx.loop = true;
         this.sfx.play();
+        this.coinAudio = this.sound.add("coinGrab2");
 
         this.player = new Player(this, 100, 500);
 
@@ -300,6 +296,7 @@ export class Game extends Scene {
 
     collectCoin(player, coin) {
         coin.destroy();
+        this.coinAudio.play();
         this.score += 10;
         this.scoreboard.setText(`SCORE: ${this.score}`);
     }
