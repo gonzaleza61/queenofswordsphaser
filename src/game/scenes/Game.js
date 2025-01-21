@@ -270,9 +270,7 @@ export class Game extends Scene {
             yoyo: true, // Reverse after reaching the target
             repeat: -1, // Infinite loop
             ease: "Sine.easeInOut", // Smooth easing
-            onUpdate: () => {
-                // Refresh the body if using static physics
-            },
+            onUpdate: () => {},
         });
 
         this.tweens.add({
@@ -296,8 +294,8 @@ export class Game extends Scene {
 
     collectCoin(player, coin) {
         coin.destroy();
-        this.coinAudio.play();
-        this.score += 10;
+        this.coinAudio.play({ volume: 0.5 });
+        this.score += 1;
         this.scoreboard.setText(`SCORE: ${this.score}`);
     }
 
