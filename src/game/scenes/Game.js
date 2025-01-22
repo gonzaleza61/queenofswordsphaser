@@ -147,7 +147,6 @@ export class Game extends Scene {
 
         this.scoreboard = this.add
             .text(50, 50, `SCORE: ${this.score}`, {
-                fontSize: "30px",
                 color: "#000000",
             })
             .setScrollFactor(0);
