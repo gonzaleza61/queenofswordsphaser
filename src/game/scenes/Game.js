@@ -292,7 +292,7 @@ export class Game extends Scene {
 
     collectCoin(player, coin) {
         coin.destroy();
-        this.coinAudio.play({ volume: 0.5 });
+        this.coinAudio.play();
         this.score += 1;
         this.scoreboard.setText(`SCORE: ${this.score}`);
     }
