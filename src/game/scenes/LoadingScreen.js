@@ -60,6 +60,7 @@ export class LoadingScreen extends Scene {
         this.load.image("dtileset", "deserttile/1 Tiles/Tileset.png");
         this.load.image("StoneTileset", "StoneTileset.png");
         this.load.image("PointerTileset", "PointerTileset.png");
+        this.load.image("ElevatorTile", "deserttile/1 Tiles/Tile_31.png");
         this.load.spritesheet(
             "CoinSprite",
             "deserttile/4 Animated objects/Coin.png",
