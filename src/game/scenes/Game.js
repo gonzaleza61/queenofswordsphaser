@@ -138,8 +138,10 @@ export class Game extends Scene {
             this.player,
             this.destructibleBlocks,
             (player, block) => {
-                console.log("Destroying block!");
-                block.destroy();
+                this.time.delayedCall(400, () => {
+                    console.log("Destroying block!");
+                    block.destroy();
+                });
             }
         );
 
