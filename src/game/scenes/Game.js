@@ -131,9 +131,17 @@ export class Game extends Scene {
         this.player.body.setSize(32, 64);
         this.physics.add.collider(this.player, [
             this.platformBlocks,
-            this.destructibleBlocks,
             this.rockLayer,
         ]);
+
+        this.physics.add.collider(
+            this.player,
+            this.destructibleBlocks,
+            (player, block) => {
+                console.log("Destroying block!");
+                block.destroy();
+            }
+        );
 
         this.physics.add.overlap(
             this.player,
@@ -520,6 +528,7 @@ export class Game extends Scene {
                 this.player.play("jump");
             }
 
+            //WallGrab
             // if (
             //     (this.player.body.blocked.right ||
             //         this.player.body.blocked.left) &&
