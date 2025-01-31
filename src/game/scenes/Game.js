@@ -137,11 +137,23 @@ export class Game extends Scene {
         this.physics.add.collider(
             this.player,
             this.destructibleBlocks,
+
             (player, block) => {
-                this.time.delayedCall(400, () => {
-                    console.log("Destroying block!");
-                    block.destroy();
-                });
+                if (!block.hasTweened) {
+                    block.hasTweened = true;
+
+                    this.tweens.add({
+                        targets: block,
+                        alpha: 0.5,
+                        duration: 100,
+                        yoyo: true,
+                        repeat: 6,
+                        onComplete: () => {
+                            block.hasTweened = false;
+                            block.destroy();
+                        },
+                    });
+                }
             }
         );
 
