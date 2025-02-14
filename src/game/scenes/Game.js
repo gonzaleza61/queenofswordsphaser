@@ -105,18 +105,19 @@ export class Game extends Scene {
             0
         );
 
-        this.elevatorBlocks = map.createLayer("elevatorObs1", "dtileset", 0, 0);
-
-        this.elevatorBlocks2 = map.createLayer(
-            "elevatorObs2",
-            "dtileset",
-            0,
-            0
-        );
+        this.destructibleBlocks = this.physics.add.staticGroup();
+        this.destructibleLayer = map
+            .getObjectLayer("DestructiblePlatform")
+            .objects.forEach((obj) => {
+                const block = this.destructibleBlocks.create(
+                    obj.x,
+                    obj.y,
+                    "ElevatorTile"
+                );
+            });
 
         this.platformBlocks.setCollisionByProperty({ collides: true });
-        this.elevatorBlocks.setCollisionByProperty({ collides: true });
-        this.elevatorBlocks2.setCollisionByProperty({ collides: true });
+        // this.destructibleBlocks.setCollisionByProperty({ collides: true });
         this.rockLayer.setCollisionByProperty({ collides: true });
 
         //Audio
@@ -130,10 +131,31 @@ export class Game extends Scene {
         this.player.body.setSize(32, 64);
         this.physics.add.collider(this.player, [
             this.platformBlocks,
-            this.elevatorBlocks,
-            this.elevatorBlocks2,
             this.rockLayer,
         ]);
+
+        this.physics.add.collider(
+            this.player,
+            this.destructibleBlocks,
+
+            (player, block) => {
+                if (!block.hasTweened) {
+                    block.hasTweened = true;
+
+                    this.tweens.add({
+                        targets: block,
+                        alpha: 0.5,
+                        duration: 100,
+                        yoyo: true,
+                        repeat: 6,
+                        onComplete: () => {
+                            block.hasTweened = false;
+                            block.destroy();
+                        },
+                    });
+                }
+            }
+        );
 
         this.physics.add.overlap(
             this.player,
@@ -247,28 +269,6 @@ export class Game extends Scene {
         this.restartControl.on("pointerdown", () => {
             this.scene.start("Game");
             this.sfx.stop();
-        });
-
-        this.tweens.add({
-            targets: this.elevatorBlocks,
-            y: -150, // Target position
-            duration: 2000, // Time in milliseconds
-            yoyo: true, // Reverse after reaching the target
-            repeat: -1, // Infinite loop
-            ease: "Sine.easeInOut", // Smooth easing
-            onUpdate: () => {},
-        });
-
-        this.tweens.add({
-            targets: this.elevatorBlocks2,
-            y: 150, // Target position
-            duration: 2000, // Time in milliseconds
-            yoyo: true, // Reverse after reaching the target
-            repeat: -1, // Infinite loop
-            ease: "Sine.easeInOut", // Smooth easing
-            onUpdate: () => {
-                // Refresh the body if using static physics
-            },
         });
 
         this.cameras.main.fadeIn(1000, 0, 0, 0);
@@ -542,6 +542,7 @@ export class Game extends Scene {
                 this.player.play("jump");
             }
 
+            //WallGrab
             // if (
             //     (this.player.body.blocked.right ||
             //         this.player.body.blocked.left) &&
