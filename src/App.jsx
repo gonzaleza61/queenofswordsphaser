@@ -10,6 +10,7 @@ function App() {
 
     return (
         <div id="app">
+            <h1>QoS</h1>
             <PhaserGame ref={phaserRef} />
         </div>
     );
