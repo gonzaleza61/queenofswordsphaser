@@ -60,11 +60,21 @@ export class Game extends Scene {
 
         const map = this.make.tilemap({ key: "desertblocktile" });
 
+        //Tilesets
         const StoneTileset = map.addTilesetImage(
             "StoneTileset",
             "StoneTileset"
         );
         const tileset = map.addTilesetImage("dtileset", "dtileset");
+
+        const PointerTileset = map.addTilesetImage(
+            "PointerTileset",
+            "PointerTileset"
+        );
+
+        //Layers
+        this.deathLayer = map.createLayer("DeathLayer", ["dtileset"], 0, 0);
+
         this.rockLayer = map.createLayer(
             "rockObstacle",
             ["StoneTileset", "dtileset"],
@@ -72,9 +82,11 @@ export class Game extends Scene {
             0
         );
 
-        const PointerTileset = map.addTilesetImage(
-            "PointerTileset",
-            "PointerTileset"
+        this.platformBlocks = map.createLayer(
+            "desertblocktile",
+            ["dtileset", "PointerTileset"],
+            0,
+            0
         );
 
         this.coinLayer = map.getObjectLayer("Coins");
@@ -98,13 +110,6 @@ export class Game extends Scene {
             coin.play("CoinJump");
         });
 
-        this.platformBlocks = map.createLayer(
-            "desertblocktile",
-            ["dtileset", "PointerTileset"],
-            0,
-            0
-        );
-
         this.destructibleBlocks = this.physics.add.staticGroup();
         this.destructibleLayer = map
             .getObjectLayer("DestructiblePlatform")
@@ -117,8 +122,8 @@ export class Game extends Scene {
             });
 
         this.platformBlocks.setCollisionByProperty({ collides: true });
-        // this.destructibleBlocks.setCollisionByProperty({ collides: true });
         this.rockLayer.setCollisionByProperty({ collides: true });
+        this.deathLayer.setCollisionByProperty({ collides: true });
 
         //Audio
         this.sfx = this.sound.add("desertLevelMusic");
@@ -133,6 +138,11 @@ export class Game extends Scene {
             this.platformBlocks,
             this.rockLayer,
         ]);
+
+        this.physics.add.collider(this.player, this.deathLayer, () => {
+            this.scene.start("Game");
+            this.sfx.stop();
+        });
 
         this.physics.add.collider(
             this.player,
