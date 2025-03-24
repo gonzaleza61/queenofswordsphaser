@@ -54,6 +54,29 @@ export class LoadingScreen extends Scene {
             },
         ]);
 
+        //Enemy Sprites
+        this.load.spritesheet([
+            {
+                key: "ScorpioIdle",
+                url: "Scorpio/Scorpio_idle.png",
+                frameConfig: { frameWidth: 48, frameHeight: 48 },
+            },
+            {
+                key: "ScorpioWalk",
+                url: "Scorpio/Scorpio_walk.png",
+                frameConfig: { frameWidth: 48, frameHeight: 48 },
+            },
+            {
+                key: "ScorpioAttack",
+                url: "Scorpio/Scorpio_attack.png",
+                frameConfig: { frameWidth: 48, frameHeight: 48 },
+            },
+            {
+                key: "ScorpioDeath",
+                url: "Scorpio/Scorpio_death.png",
+                frameConfig: { frameWidth: 48, frameHeight: 48 },
+            },
+        ]);
         //Tilesets
         this.load.tilemapTiledJSON("rockObstacle", "qosmaponeembed.tmj");
         this.load.tilemapTiledJSON("desertblocktile", "qosmaponeembed.tmj");

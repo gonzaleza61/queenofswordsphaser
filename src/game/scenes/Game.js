@@ -2,6 +2,7 @@ import { Scene } from "phaser";
 import Phaser from "phaser";
 import { EventBus } from "../EventBus";
 import Player from "../player/Player";
+import Scorpio from "../enemies/Scorpio";
 import MobileButton from "../mobileUI/MobileUIButton";
 import { MobileUIData } from "../data/MobileUIData";
 export class Game extends Scene {
@@ -131,13 +132,17 @@ export class Game extends Scene {
         this.sfx.play();
         this.coinAudio = this.sound.add("coinGrab2");
 
+        //Sprites
         this.player = new Player(this, 100, 500);
+        this.scorpio = new Scorpio(this, 100, 500);
 
         this.player.body.setSize(32, 64);
         this.physics.add.collider(this.player, [
             this.platformBlocks,
             this.rockLayer,
         ]);
+
+        this.physics.add.collider(this.scorpio, this.platformBlocks);
 
         this.physics.add.collider(this.player, this.deathLayer, () => {
             this.scene.start("Game");
@@ -251,6 +256,38 @@ export class Game extends Scene {
             }),
             frameRate: 12,
             repeat: -1,
+        });
+
+        this.anims.create({
+            key: "idle",
+            frames: this.anims.generateFrameNumbers("ScorpioIdle", {
+                frames: [0, 1, 2, 3],
+            }),
+            frameRate: 4,
+            repeat: -1,
+        });
+
+        this.anims.create({
+            key: "walk",
+            frames: this.anims.generateFrameNumbers("ScorpioWalk", {
+                frames: [0, 1, 2, 3],
+            }),
+            frameRate: 8,
+            repeat: -1,
+        });
+
+        this.anims.create({
+            key: "attack",
+            frames: this.anims.generateFrameNumbers("ScorpioAttack", {
+                frames: [0, 1, 2, 3],
+            }),
+        });
+
+        this.anims.create({
+            key: "death",
+            frames: this.anims.generateFrameNumbers("ScorpioDeath", {
+                frames: [0, 1, 2, 3],
+            }),
         });
 
         this.player.play("idle", true);
