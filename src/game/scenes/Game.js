@@ -134,8 +134,8 @@ export class Game extends Scene {
 
         //Sprites
         this.player = new Player(this, 100, 500);
-        this.scorpio = new Scorpio(this, 500, 500);
-        this.scorpio.body.setVelocityX(100);
+        this.scorpio = new Scorpio(this, 500, 525);
+        this.scorpio.body.setVelocityX(-100);
 
         this.player.body.setSize(32, 64);
         this.scorpio.body.setSize(30, 25);
