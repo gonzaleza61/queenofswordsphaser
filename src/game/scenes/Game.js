@@ -134,7 +134,8 @@ export class Game extends Scene {
 
         //Sprites
         this.player = new Player(this, 100, 500);
-        this.scorpio = new Scorpio(this, 100, 500);
+        this.scorpio = new Scorpio(this, 500, 500);
+        this.scorpio.body.setVelocityX(100);
 
         this.player.body.setSize(32, 64);
         this.physics.add.collider(this.player, [
@@ -142,7 +143,10 @@ export class Game extends Scene {
             this.rockLayer,
         ]);
 
-        this.physics.add.collider(this.scorpio, this.platformBlocks);
+        this.physics.add.collider(this.scorpio, [
+            this.platformBlocks,
+            this.rockLayer,
+        ]);
 
         this.physics.add.collider(this.player, this.deathLayer, () => {
             this.scene.start("Game");
@@ -259,7 +263,7 @@ export class Game extends Scene {
         });
 
         this.anims.create({
-            key: "idle",
+            key: "scorpioIdle",
             frames: this.anims.generateFrameNumbers("ScorpioIdle", {
                 frames: [0, 1, 2, 3],
             }),
@@ -268,7 +272,7 @@ export class Game extends Scene {
         });
 
         this.anims.create({
-            key: "walk",
+            key: "scorpioWalk",
             frames: this.anims.generateFrameNumbers("ScorpioWalk", {
                 frames: [0, 1, 2, 3],
             }),
@@ -277,20 +281,21 @@ export class Game extends Scene {
         });
 
         this.anims.create({
-            key: "attack",
+            key: "scorpioAttack",
             frames: this.anims.generateFrameNumbers("ScorpioAttack", {
                 frames: [0, 1, 2, 3],
             }),
         });
 
         this.anims.create({
-            key: "death",
+            key: "scorpioDeath",
             frames: this.anims.generateFrameNumbers("ScorpioDeath", {
                 frames: [0, 1, 2, 3],
             }),
         });
 
         this.player.play("idle", true);
+        this.scorpio.play("scorpioIdle", true);
 
         for (const [controlName, config] of Object.entries(MobileUIData)) {
             this[controlName] = new MobileButton(
@@ -587,6 +592,16 @@ export class Game extends Scene {
             ) {
                 this.player.body.setVelocityY(-265);
                 this.player.play("jump");
+            }
+
+            if (this.scorpio) {
+                if (this.scorpio.body.blocked.left) {
+                    this.scorpio.body.setVelocityX(100);
+                    this.scorpio.setFlipX(true);
+                } else if (this.scorpio.body.blocked.right) {
+                    this.scorpio.body.setVelocityX(-100);
+                    this.scorpio.setFlipX(false);
+                }
             }
 
             //WallGrab
