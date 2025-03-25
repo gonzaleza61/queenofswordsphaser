@@ -138,6 +138,8 @@ export class Game extends Scene {
         this.scorpio.body.setVelocityX(100);
 
         this.player.body.setSize(32, 64);
+        this.scorpio.body.setSize(30, 25);
+        this.scorpio.body.setOffset(16, 24);
         this.physics.add.collider(this.player, [
             this.platformBlocks,
             this.rockLayer,
@@ -598,9 +600,11 @@ export class Game extends Scene {
                 if (this.scorpio.body.blocked.left) {
                     this.scorpio.body.setVelocityX(100);
                     this.scorpio.setFlipX(true);
+                    this.scorpio.body.setOffset(4, 24);
                 } else if (this.scorpio.body.blocked.right) {
                     this.scorpio.body.setVelocityX(-100);
                     this.scorpio.setFlipX(false);
+                    this.scorpio.body.setOffset(16, 24);
                 }
             }
 
