@@ -460,6 +460,8 @@ export class Game extends Scene {
         }
 
         if (this.player) {
+            console.log(this.player.body.position.x);
+
             const cursors = this.input.keyboard.createCursorKeys();
 
             const camera = this.cameras.main;
