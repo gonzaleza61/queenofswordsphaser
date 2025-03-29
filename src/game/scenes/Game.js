@@ -134,7 +134,7 @@ export class Game extends Scene {
 
         //Sprites
         this.player = new Player(this, 100, 500);
-        this.scorpio = new Scorpio(this, 500, 525);
+        this.scorpio = new Scorpio(this, 775, 525);
         this.scorpio.body.setVelocityX(-100);
 
         this.player.body.setSize(32, 64);
@@ -147,7 +147,7 @@ export class Game extends Scene {
 
         this.physics.add.collider(this.scorpio, [
             this.platformBlocks,
-            this.rockLayer,
+            // this.rockLayer,
         ]);
 
         this.physics.add.collider(this.player, this.deathLayer, () => {
@@ -460,7 +460,7 @@ export class Game extends Scene {
         }
 
         if (this.player) {
-            console.log(this.player.body.position.x);
+            // console.log(this.player.body.position.x);
 
             const cursors = this.input.keyboard.createCursorKeys();
 
@@ -599,14 +599,23 @@ export class Game extends Scene {
             }
 
             if (this.scorpio) {
-                if (this.scorpio.body.blocked.left) {
-                    this.scorpio.body.setVelocityX(100);
-                    this.scorpio.setFlipX(true);
-                    this.scorpio.body.setOffset(4, 24);
-                } else if (this.scorpio.body.blocked.right) {
-                    this.scorpio.body.setVelocityX(-100);
-                    this.scorpio.setFlipX(false);
-                    this.scorpio.body.setOffset(16, 24);
+                const isMovingRight = this.scorpio.body.velocity.x > 0;
+                const offset = isMovingRight ? 16 : -16;
+
+                const tileAhead = this.platformBlocks.getTileAtWorldXY(
+                    this.scorpio.x + offset,
+                    this.scorpio.y + this.scorpio.height + 1
+                );
+
+                const tileAheadFront = this.rockLayer.getTileAtWorldXY(
+                    this.scorpio.x + offset,
+                    this.scorpio.y + this.scorpio.height / 4
+                );
+
+                if (!tileAhead || tileAheadFront) {
+                    // No ground ahead — turn around
+                    this.scorpio.body.setVelocityX(isMovingRight ? -100 : 100);
+                    this.scorpio.setFlipX(!isMovingRight);
                 }
             }
 
