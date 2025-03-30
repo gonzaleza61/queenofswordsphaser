@@ -134,21 +134,31 @@ export class Game extends Scene {
 
         //Sprites
         this.player = new Player(this, 100, 500);
-        this.scorpio = new Scorpio(this, 775, 525);
-        this.scorpio.body.setVelocityX(-100);
+
+        //Enemies
+        this.scorpioGroup = this.add.group();
+        const scorpioPositions = [
+            { x: 775, y: 525 },
+            { x: 1000, y: 525 },
+            { x: 1300, y: 525 },
+        ];
+        scorpioPositions.forEach((pos) => {
+            const scorpio = new Scorpio(this, pos.x, pos.y);
+            this.scorpioGroup.add(scorpio);
+        });
+        this.scorpios = this.physics.add.group();
+        this.physics.add.collider(this.scorpios, this.platformBlocks);
 
         this.player.body.setSize(32, 64);
-        this.scorpio.body.setSize(30, 25);
-        this.scorpio.body.setOffset(16, 24);
         this.physics.add.collider(this.player, [
             this.platformBlocks,
             this.rockLayer,
         ]);
 
-        this.physics.add.collider(this.scorpio, [
-            this.platformBlocks,
-            // this.rockLayer,
-        ]);
+        // this.physics.add.collider(this.scorpio, [
+        //     this.platformBlocks,
+        //     // this.rockLayer,
+        // ]);
 
         this.physics.add.collider(this.player, this.deathLayer, () => {
             this.scene.start("Game");
@@ -297,7 +307,7 @@ export class Game extends Scene {
         });
 
         this.player.play("idle", true);
-        this.scorpio.play("scorpioIdle", true);
+        // this.scorpio.play("scorpioIdle", true);
 
         for (const [controlName, config] of Object.entries(MobileUIData)) {
             this[controlName] = new MobileButton(
@@ -598,26 +608,26 @@ export class Game extends Scene {
                 this.player.play("jump");
             }
 
-            if (this.scorpio) {
-                const isMovingRight = this.scorpio.body.velocity.x > 0;
-                const offset = isMovingRight ? 16 : -16;
+            // if (this.scorpio) {
+            //     const isMovingRight = this.scorpio.body.velocity.x > 0;
+            //     const offset = isMovingRight ? 16 : -16;
 
-                const tileAhead = this.platformBlocks.getTileAtWorldXY(
-                    this.scorpio.x + offset,
-                    this.scorpio.y + this.scorpio.height + 1
-                );
+            //     const tileAhead = this.platformBlocks.getTileAtWorldXY(
+            //         this.scorpio.x + offset,
+            //         this.scorpio.y + this.scorpio.height + 1
+            //     );
 
-                const tileAheadFront = this.rockLayer.getTileAtWorldXY(
-                    this.scorpio.x + offset,
-                    this.scorpio.y + this.scorpio.height / 4
-                );
+            //     const tileAheadFront = this.rockLayer.getTileAtWorldXY(
+            //         this.scorpio.x + offset,
+            //         this.scorpio.y + this.scorpio.height / 4
+            //     );
 
-                if (!tileAhead || tileAheadFront) {
-                    // No ground ahead — turn around
-                    this.scorpio.body.setVelocityX(isMovingRight ? -100 : 100);
-                    this.scorpio.setFlipX(!isMovingRight);
-                }
-            }
+            //     if (!tileAhead || tileAheadFront) {
+            //         // No ground ahead — turn around
+            //         this.scorpio.body.setVelocityX(isMovingRight ? -100 : 100);
+            //         this.scorpio.setFlipX(!isMovingRight);
+            //     }
+            // }
 
             //WallGrab
             // if (

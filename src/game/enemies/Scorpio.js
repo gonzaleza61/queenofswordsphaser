@@ -7,6 +7,10 @@ class Scorpio extends GameObjects.Sprite {
         this.scene.physics.add.existing(this); // Ensure physics is added
         this.body.setCollideWorldBounds(true);
         this.body.setBounce(0);
+        this.body.setVelocityX(-100);
+        this.body.setSize(30, 25);
+        this.body.setOffset(16, 24);
+        this.scene.physics.add.collider(this, this.scene.platformBlocks);
     }
 }
 
