@@ -139,8 +139,8 @@ export class Game extends Scene {
         this.scorpioGroup = this.add.group();
         const scorpioPositions = [
             { x: 775, y: 525 },
-            { x: 1000, y: 525 },
-            { x: 1300, y: 525 },
+            { x: 2425, y: 525 },
+            { x: 4200, y: 525 },
         ];
         scorpioPositions.forEach((pos) => {
             const scorpio = new Scorpio(this, pos.x, pos.y);
@@ -154,11 +154,6 @@ export class Game extends Scene {
             this.platformBlocks,
             this.rockLayer,
         ]);
-
-        // this.physics.add.collider(this.scorpio, [
-        //     this.platformBlocks,
-        //     // this.rockLayer,
-        // ]);
 
         this.physics.add.collider(this.player, this.deathLayer, () => {
             this.scene.start("Game");
@@ -272,38 +267,6 @@ export class Game extends Scene {
             }),
             frameRate: 12,
             repeat: -1,
-        });
-
-        this.anims.create({
-            key: "scorpioIdle",
-            frames: this.anims.generateFrameNumbers("ScorpioIdle", {
-                frames: [0, 1, 2, 3],
-            }),
-            frameRate: 4,
-            repeat: -1,
-        });
-
-        this.anims.create({
-            key: "scorpioWalk",
-            frames: this.anims.generateFrameNumbers("ScorpioWalk", {
-                frames: [0, 1, 2, 3],
-            }),
-            frameRate: 8,
-            repeat: -1,
-        });
-
-        this.anims.create({
-            key: "scorpioAttack",
-            frames: this.anims.generateFrameNumbers("ScorpioAttack", {
-                frames: [0, 1, 2, 3],
-            }),
-        });
-
-        this.anims.create({
-            key: "scorpioDeath",
-            frames: this.anims.generateFrameNumbers("ScorpioDeath", {
-                frames: [0, 1, 2, 3],
-            }),
         });
 
         this.player.play("idle", true);
@@ -608,26 +571,9 @@ export class Game extends Scene {
                 this.player.play("jump");
             }
 
-            // if (this.scorpio) {
-            //     const isMovingRight = this.scorpio.body.velocity.x > 0;
-            //     const offset = isMovingRight ? 16 : -16;
-
-            //     const tileAhead = this.platformBlocks.getTileAtWorldXY(
-            //         this.scorpio.x + offset,
-            //         this.scorpio.y + this.scorpio.height + 1
-            //     );
-
-            //     const tileAheadFront = this.rockLayer.getTileAtWorldXY(
-            //         this.scorpio.x + offset,
-            //         this.scorpio.y + this.scorpio.height / 4
-            //     );
-
-            //     if (!tileAhead || tileAheadFront) {
-            //         // No ground ahead — turn around
-            //         this.scorpio.body.setVelocityX(isMovingRight ? -100 : 100);
-            //         this.scorpio.setFlipX(!isMovingRight);
-            //     }
-            // }
+            this.scorpioGroup
+                .getChildren()
+                .forEach((scorpio) => scorpio.update());
 
             //WallGrab
             // if (
