@@ -140,7 +140,8 @@ export class Game extends Scene {
         const scorpioPositions = [
             { x: 775, y: 525 },
             { x: 2425, y: 525 },
-            { x: 4200, y: 525 },
+            { x: 4500, y: 525 },
+            { x: 5500, y: 525 },
         ];
         scorpioPositions.forEach((pos) => {
             const scorpio = new Scorpio(this, pos.x, pos.y);

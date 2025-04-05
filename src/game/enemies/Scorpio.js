@@ -51,28 +51,31 @@ class Scorpio extends GameObjects.Sprite {
         const isMovingRight = this.body.velocity.x > 0;
         const offset = isMovingRight ? 16 : -16;
 
-        const tileAhead = this.scene.platformBlocks.getTileAtWorldXY(
-            this.x + offset,
-            this.y + this.height + 1
-        );
+        const checkGround = (layer) => {
+            return layer.getTileAtWorldXY(
+                this.x + offset,
+                this.y + this.height + 1
+            );
+        };
 
-        const platformAhead = this.scene.platformBlocks.getTileAtWorldXY(
-            this.x + offset,
-            this.y + this.height / 4
-        );
+        const checkWall = (layer) => {
+            return layer.getTileAtWorldXY(
+                this.x + offset,
+                this.y + this.height / 4
+            );
+        };
 
-        const tileAheadFront = this.scene.rockLayer?.getTileAtWorldXY(
-            this.x + offset,
-            this.y + this.height / 4
-        );
+        const noGround =
+            !checkGround(this.scene.platformBlocks) &&
+            !checkGround(this.scene.rockLayer);
 
-        if (!tileAhead || tileAheadFront || platformAhead) {
+        const frontBlocked =
+            checkWall(this.scene.platformBlocks) ||
+            checkWall(this.scene.rockLayer);
+
+        if (noGround || frontBlocked) {
             this.body.setVelocityX(isMovingRight ? -100 : 100);
             this.setFlipX(!isMovingRight);
-        }
-
-        if (this.body.blocked.down) {
-            this.play("scorpioWalk", true);
         }
     }
 }
