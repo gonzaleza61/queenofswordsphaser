@@ -16,7 +16,7 @@ export class TitleScreen extends Scene {
 
         const titlescreen = this.add
             .image(centerX, centerY, "titleBG")
-            .setScale(2);
+            .setScale(0.6);
         titlescreen.setOrigin(0.5, 0.5);
 
         this.add.text(3000, 200, "The Queen of Swords").setOrigin(0.5, 0.5);

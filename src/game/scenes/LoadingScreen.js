@@ -110,7 +110,7 @@ export class LoadingScreen extends Scene {
         this.load.image("desertOneBG", "deserttile/BG/Layers/5.png");
         this.load.image("desertTwoBG", "deserttile/BG/Layers/6.png");
         this.load.image("desertThreeBG", "deserttile/BG/Layers/7.png");
-        this.load.image("titleBG", "backgroundtest.jpg");
+        this.load.image("titleBG", "qospictwo.png");
 
         //Font
 
