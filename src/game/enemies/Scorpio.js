@@ -5,7 +5,7 @@ class Scorpio extends GameObjects.Sprite {
         super(scene, x, y, "ScorpioIdle");
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this); // Ensure physics is added
-        this.body.setCollideWorldBounds(true);
+        this.body.setCollideWorldBounds(false);
         this.body.setBounce(0);
         this.body.setVelocityX(-100);
         this.body.setSize(30, 25);
@@ -49,33 +49,30 @@ class Scorpio extends GameObjects.Sprite {
 
     update() {
         const isMovingRight = this.body.velocity.x > 0;
-        const offset = isMovingRight ? 16 : -16;
+        const offsetX = isMovingRight ? 32 : -32;
 
-        const checkGround = (layer) => {
-            return layer.getTileAtWorldXY(
-                this.x + offset,
-                this.y + this.height + 1
-            );
-        };
+        const checkX = this.x + offsetX;
+        const groundY = this.y + this.body.height;
+        const wallY = this.y + this.body.height / 2;
 
-        const checkWall = (layer) => {
-            return layer.getTileAtWorldXY(
-                this.x + offset,
-                this.y + this.height / 4
-            );
-        };
+        const groundAhead =
+            this.scene.platformBlocks.hasTileAtWorldXY(checkX, groundY) ||
+            this.scene.rockLayer?.hasTileAtWorldXY(checkX, groundY);
 
-        const noGround =
-            !checkGround(this.scene.platformBlocks) &&
-            !checkGround(this.scene.rockLayer);
+        const wallAhead =
+            this.scene.platformBlocks.hasTileAtWorldXY(checkX, wallY) ||
+            this.scene.rockLayer?.hasTileAtWorldXY(checkX, wallY);
 
-        const frontBlocked =
-            checkWall(this.scene.platformBlocks) ||
-            checkWall(this.scene.rockLayer);
-
-        if (noGround || frontBlocked) {
+        if (!groundAhead || wallAhead) {
             this.body.setVelocityX(isMovingRight ? -100 : 100);
             this.setFlipX(!isMovingRight);
+        }
+
+        if (
+            this.body.blocked.down &&
+            this.anims.currentAnim?.key !== "scorpioWalk"
+        ) {
+            this.play("scorpioWalk", true);
         }
     }
 }

@@ -135,20 +135,24 @@ export class Game extends Scene {
         //Sprites
         this.player = new Player(this, 100, 500);
 
+        this.physics.world.createDebugGraphic();
+        this.platformBlocks.renderDebug(this.add.graphics(), {
+            tileColor: null,
+            collidingTileColor: new Phaser.Display.Color(255, 0, 0, 100),
+        });
+
         //Enemies
         this.scorpioGroup = this.add.group();
         const scorpioPositions = [
             { x: 775, y: 525 },
-            { x: 2425, y: 525 },
-            { x: 4500, y: 525 },
-            { x: 5500, y: 525 },
+            { x: 4000, y: 525 },
+            { x: 5000, y: 525 },
         ];
         scorpioPositions.forEach((pos) => {
             const scorpio = new Scorpio(this, pos.x, pos.y);
             this.scorpioGroup.add(scorpio);
         });
-        this.scorpios = this.physics.add.group();
-        this.physics.add.collider(this.scorpios, this.platformBlocks);
+        // this.scorpios = this.physics.add.group();
 
         this.player.body.setSize(32, 64);
         this.physics.add.collider(this.player, [
