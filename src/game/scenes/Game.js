@@ -135,11 +135,11 @@ export class Game extends Scene {
         //Sprites
         this.player = new Player(this, 100, 500);
 
-        this.physics.world.createDebugGraphic();
-        this.platformBlocks.renderDebug(this.add.graphics(), {
-            tileColor: null,
-            collidingTileColor: new Phaser.Display.Color(255, 0, 0, 100),
-        });
+        // this.physics.world.createDebugGraphic();
+        // this.platformBlocks.renderDebug(this.add.graphics(), {
+        //     tileColor: null,
+        //     collidingTileColor: new Phaser.Display.Color(255, 0, 0, 100),
+        // });
 
         //Enemies
         this.scorpioGroup = this.add.group();
