@@ -204,12 +204,12 @@ export class Game extends Scene {
             })
             .setScrollFactor(0);
 
-        const debugGraphics = this.add.graphics();
-        map.renderDebug(debugGraphics, {
-            tileColor: null,
-            collidingTileColor: new Phaser.Display.Color(242, 234, 48, 1),
-            faceColor: new Phaser.Display.Color(85, 85, 85, 1),
-        });
+        // const debugGraphics = this.add.graphics();
+        // map.renderDebug(debugGraphics, {
+        //     tileColor: null,
+        //     collidingTileColor: new Phaser.Display.Color(242, 234, 48, 1),
+        //     faceColor: new Phaser.Display.Color(85, 85, 85, 1),
+        // });
 
         this.anims.create({
             key: "idle",
